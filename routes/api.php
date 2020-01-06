@@ -14,4 +14,6 @@ use Illuminate\Http\Request;
 */
 
 Route::get('/products', 'ProductController@index');
+Route::post('/products/create', 'ProductController@store');
+Route::delete('/products/delete/{id}', 'ProductController@deleteMany');
 

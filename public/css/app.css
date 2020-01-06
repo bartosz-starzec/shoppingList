@@ -11367,3 +11367,7 @@ a.text-dark:focus {
   opacity: 0;
 }
 
+.select-product {
+  cursor: pointer;
+}
+

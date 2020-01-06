@@ -1,33 +1,96 @@
 <template>
-    <div class="row justify-content-center">
+    <div class="row justify-content-center mb-5">
         <div class="col-md-8">
             <div class="products card mb-4">
                 <div class="card-header">
-                    <button class="btn btn-link w-100 text-decoration-none text-left" type="button"
-                            data-toggle="collapse" data-target="#collapseProducts"
-                            aria-expanded="true" aria-controls="collapseProducts">
+                    <button
+                        class="btn btn-link w-100 text-decoration-none text-left"
+                        type="button"
+                        data-toggle="collapse"
+                        data-target="#collapseProducts"
+                        aria-expanded="true"
+                        aria-controls="collapseProducts"
+                    >
                         Products
                     </button>
                 </div>
                 <div class="collapseProducts card-body" id="collapseProducts">
-                    <ul>
-                        <li v-for="product in products">
-                            {{ product.name }}
+                    <div class="products__new p-3">
+                        <button
+                            class="btn btn-link w-100 text-decoration-none text-left"
+                            type="button"
+                            data-toggle="collapse"
+                            data-target="#collapse-add-product"
+                            aria-expanded="false"
+                            aria-controls="collapse-add-product"
+                        >
+                            Add new product &#x21e9
+                        </button>
+                        <div class="add-product collapse" id="collapse-add-product">
+                            <form class="form-inline" @submit.prevent="addProduct">
+                                <div class="form-group">
+                                    <label
+                                        for="prodcut-name"
+                                        class="prodcut-name d-block sr-only"
+                                    >
+                                        Product name:
+                                    </label>
+                                    <input
+                                        type="text"
+                                        name="prodcut-name"
+                                        id="prodcut-name"
+                                        class="form-control mr-2"
+                                        placeholder="Name"
+                                        v-model="product.name"
+                                    />
+                                </div>
+                                <div class="form-group">
+                                    <button class="btn btn-success">+</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <ul class="list-group">
+                        <li class="list-group-item" v-for="product in products" v-bind:key="product.id">
+                            <label :for="product.id" class="form-group m-1 w-100 select-product">
+                                <input type="checkbox" :name="product.id" :id="product.id" :value="product.id"
+                                       v-model="selectedProducts">
+                                {{ product.name }}
+                            </label>
                         </li>
                     </ul>
+
+                    <div class="controls mt-3">
+                        <select name="shoppingListId" id="shoppingListId">
+                            <option v-for="shoppingList in shoppingLists" :value="shoppingList">
+                                Shopping List {{ shoppingList }}
+                            </option>
+                        </select>
+                        <button class="btn btn-primary" @click="addToShoppingList">
+                            Add to shopping list
+                        </button>
+                        <button class="btn btn-danger" @click="deleteProducts">
+                            Delete products
+                        </button>
+                    </div>
                 </div>
             </div>
-            <div class="shoppingList card">
+            <button class="btn btn-primary mb-3" @click="createShoppingList">
+                Create new shopping list
+            </button>
+            <div v-for="shoppingList in shoppingLists" class="shoppingList card mb-5">
                 <div class="card-header">
                     <button class="btn btn-link w-100 text-decoration-none text-left" type="button"
                             data-toggle="collapse"
-                            data-target="#collapseShoppingList"
-                            aria-expanded="true" aria-controls="collapseShoppingList">
-                        Shopping List
+                            :data-target="`#collapseShoppingList${shoppingList}`"
+                            aria-expanded="false"
+                            :aria-controls="`collapseShoppingList${shoppingList}`">
+                        Shopping List {{ shoppingList }}
                     </button>
                 </div>
 
-                <div class="collapseShoppingList card-body" id="collapseShoppingList">
+                <div class="collapse card-body" :id="`collapseShoppingList${shoppingList}`">
                     Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.
                     Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea
                     proident.
@@ -41,17 +104,41 @@
     export default {
         data() {
             return {
+                product: {},
                 products: [],
-                shoppingListProducts: []
-            }
+                shoppingListProducts: [],
+                selectedProducts: [],
+                shoppingLists: 1
+            };
         },
         created() {
-            let uri = 'http://127.0.0.1:8000/api/products';
-            this.axios
-                .get(uri)
-                .then(response => {
+            this.getProducts();
+        },
+        methods: {
+            getProducts() {
+                this.axios.get("/products").then(response => {
                     this.products = response.data.data;
-                })
+                });
+            },
+            addProduct() {
+                this.axios.post("products/create", this.product).then(() => {
+                    this.product.name = "";
+                    this.getProducts();
+                });
+            },
+            addToShoppingList() {
+                console.log(this.selectedProducts);
+            },
+            deleteProducts() {
+                if (confirm('Are you sure?')) {
+                    this.axios.delete(`products/delete/${this.selectedProducts.toString()}`).then(() => {
+                        this.getProducts();
+                    });
+                }
+            },
+            createShoppingList() {
+                this.shoppingLists++;
+            }
         }
-    }
+    };
 </script>

@@ -1940,20 +1940,114 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      product: {},
       products: [],
-      shoppingListProducts: []
+      shoppingListProducts: [],
+      selectedProducts: [],
+      shoppingLists: 1
     };
   },
   created: function created() {
-    var _this = this;
+    this.getProducts();
+  },
+  methods: {
+    getProducts: function getProducts() {
+      var _this = this;
 
-    var uri = 'http://127.0.0.1:8000/api/products';
-    this.axios.get(uri).then(function (response) {
-      _this.products = response.data.data;
-    });
+      this.axios.get("/products").then(function (response) {
+        _this.products = response.data.data;
+      });
+    },
+    addProduct: function addProduct() {
+      var _this2 = this;
+
+      this.axios.post("products/create", this.product).then(function () {
+        _this2.product.name = "";
+
+        _this2.getProducts();
+      });
+    },
+    addToShoppingList: function addToShoppingList() {
+      console.log(this.selectedProducts);
+    },
+    deleteProducts: function deleteProducts() {
+      var _this3 = this;
+
+      if (confirm('Are you sure?')) {
+        this.axios["delete"]("products/delete/".concat(this.selectedProducts.toString())).then(function () {
+          _this3.getProducts();
+        });
+      }
+    },
+    createShoppingList: function createShoppingList() {
+      this.shoppingLists++;
+    }
   }
 });
 
@@ -37474,37 +37568,283 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "row justify-content-center" }, [
-    _c("div", { staticClass: "col-md-8" }, [
-      _c("div", { staticClass: "products card mb-4" }, [
-        _vm._m(0),
+  return _c("div", { staticClass: "row justify-content-center mb-5" }, [
+    _c(
+      "div",
+      { staticClass: "col-md-8" },
+      [
+        _c("div", { staticClass: "products card mb-4" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "collapseProducts card-body",
+              attrs: { id: "collapseProducts" }
+            },
+            [
+              _c("div", { staticClass: "products__new p-3" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass:
+                      "btn btn-link w-100 text-decoration-none text-left",
+                    attrs: {
+                      type: "button",
+                      "data-toggle": "collapse",
+                      "data-target": "#collapse-add-product",
+                      "aria-expanded": "false",
+                      "aria-controls": "collapse-add-product"
+                    }
+                  },
+                  [
+                    _vm._v(
+                      "\n                        Add new product ⇩\n                    "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "add-product collapse",
+                    attrs: { id: "collapse-add-product" }
+                  },
+                  [
+                    _c(
+                      "form",
+                      {
+                        staticClass: "form-inline",
+                        on: {
+                          submit: function($event) {
+                            $event.preventDefault()
+                            return _vm.addProduct($event)
+                          }
+                        }
+                      },
+                      [
+                        _c("div", { staticClass: "form-group" }, [
+                          _c(
+                            "label",
+                            {
+                              staticClass: "prodcut-name d-block sr-only",
+                              attrs: { for: "prodcut-name" }
+                            },
+                            [
+                              _vm._v(
+                                "\n                                    Product name:\n                                "
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.product.name,
+                                expression: "product.name"
+                              }
+                            ],
+                            staticClass: "form-control mr-2",
+                            attrs: {
+                              type: "text",
+                              name: "prodcut-name",
+                              id: "prodcut-name",
+                              placeholder: "Name"
+                            },
+                            domProps: { value: _vm.product.name },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.product,
+                                  "name",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          })
+                        ]),
+                        _vm._v(" "),
+                        _vm._m(1)
+                      ]
+                    )
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c(
+                "ul",
+                { staticClass: "list-group" },
+                _vm._l(_vm.products, function(product) {
+                  return _c(
+                    "li",
+                    { key: product.id, staticClass: "list-group-item" },
+                    [
+                      _c(
+                        "label",
+                        {
+                          staticClass: "form-group m-1 w-100 select-product",
+                          attrs: { for: product.id }
+                        },
+                        [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.selectedProducts,
+                                expression: "selectedProducts"
+                              }
+                            ],
+                            attrs: {
+                              type: "checkbox",
+                              name: product.id,
+                              id: product.id
+                            },
+                            domProps: {
+                              value: product.id,
+                              checked: Array.isArray(_vm.selectedProducts)
+                                ? _vm._i(_vm.selectedProducts, product.id) > -1
+                                : _vm.selectedProducts
+                            },
+                            on: {
+                              change: function($event) {
+                                var $$a = _vm.selectedProducts,
+                                  $$el = $event.target,
+                                  $$c = $$el.checked ? true : false
+                                if (Array.isArray($$a)) {
+                                  var $$v = product.id,
+                                    $$i = _vm._i($$a, $$v)
+                                  if ($$el.checked) {
+                                    $$i < 0 &&
+                                      (_vm.selectedProducts = $$a.concat([$$v]))
+                                  } else {
+                                    $$i > -1 &&
+                                      (_vm.selectedProducts = $$a
+                                        .slice(0, $$i)
+                                        .concat($$a.slice($$i + 1)))
+                                  }
+                                } else {
+                                  _vm.selectedProducts = $$c
+                                }
+                              }
+                            }
+                          }),
+                          _vm._v(
+                            "\n                            " +
+                              _vm._s(product.name) +
+                              "\n                        "
+                          )
+                        ]
+                      )
+                    ]
+                  )
+                }),
+                0
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "controls mt-3" }, [
+                _c(
+                  "select",
+                  { attrs: { name: "shoppingListId", id: "shoppingListId" } },
+                  _vm._l(_vm.shoppingLists, function(shoppingList) {
+                    return _c("option", { domProps: { value: shoppingList } }, [
+                      _vm._v(
+                        "\n                            Shopping List " +
+                          _vm._s(shoppingList) +
+                          "\n                        "
+                      )
+                    ])
+                  }),
+                  0
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-primary",
+                    on: { click: _vm.addToShoppingList }
+                  },
+                  [
+                    _vm._v(
+                      "\n                        Add to shopping list\n                    "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-danger",
+                    on: { click: _vm.deleteProducts }
+                  },
+                  [
+                    _vm._v(
+                      "\n                        Delete products\n                    "
+                    )
+                  ]
+                )
+              ])
+            ]
+          )
+        ]),
         _vm._v(" "),
         _c(
-          "div",
+          "button",
           {
-            staticClass: "collapseProducts card-body",
-            attrs: { id: "collapseProducts" }
+            staticClass: "btn btn-primary mb-3",
+            on: { click: _vm.createShoppingList }
           },
-          [
-            _c(
-              "ul",
-              _vm._l(_vm.products, function(product) {
-                return _c("li", [
+          [_vm._v("\n            Create new shopping list\n        ")]
+        ),
+        _vm._v(" "),
+        _vm._l(_vm.shoppingLists, function(shoppingList) {
+          return _c("div", { staticClass: "shoppingList card mb-5" }, [
+            _c("div", { staticClass: "card-header" }, [
+              _c(
+                "button",
+                {
+                  staticClass:
+                    "btn btn-link w-100 text-decoration-none text-left",
+                  attrs: {
+                    type: "button",
+                    "data-toggle": "collapse",
+                    "data-target": "#collapseShoppingList" + shoppingList,
+                    "aria-expanded": "false",
+                    "aria-controls": "collapseShoppingList" + shoppingList
+                  }
+                },
+                [
                   _vm._v(
-                    "\n                        " +
-                      _vm._s(product.name) +
-                      "\n                    "
+                    "\n                    Shopping List " +
+                      _vm._s(shoppingList) +
+                      "\n                "
                   )
-                ])
-              }),
-              0
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "collapse card-body",
+                attrs: { id: "collapseShoppingList" + shoppingList }
+              },
+              [
+                _vm._v(
+                  "\n                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.\n                Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea\n                proident.\n            "
+                )
+              ]
             )
-          ]
-        )
-      ]),
-      _vm._v(" "),
-      _vm._m(1)
-    ])
+          ])
+        })
+      ],
+      2
+    )
   ])
 }
 var staticRenderFns = [
@@ -37533,36 +37873,8 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "shoppingList card" }, [
-      _c("div", { staticClass: "card-header" }, [
-        _c(
-          "button",
-          {
-            staticClass: "btn btn-link w-100 text-decoration-none text-left",
-            attrs: {
-              type: "button",
-              "data-toggle": "collapse",
-              "data-target": "#collapseShoppingList",
-              "aria-expanded": "true",
-              "aria-controls": "collapseShoppingList"
-            }
-          },
-          [_vm._v("\n                    Shopping List\n                ")]
-        )
-      ]),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass: "collapseShoppingList card-body",
-          attrs: { id: "collapseShoppingList" }
-        },
-        [
-          _vm._v(
-            "\n                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.\n                Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea\n                proident.\n            "
-          )
-        ]
-      )
+    return _c("div", { staticClass: "form-group" }, [
+      _c("button", { staticClass: "btn btn-success" }, [_vm._v("+")])
     ])
   }
 ]
@@ -52718,13 +53030,10 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_axios__WEBPACK_IMPORTED_MODULE_1___default.a, axios__WEBPACK_IMPORTED_MODULE_2___default.a);
-axios__WEBPACK_IMPORTED_MODULE_2___default.a.defaults.headers.common = {
-  'Accept': 'application/json',
-  'Content-Type': 'application/json'
-};
+axios__WEBPACK_IMPORTED_MODULE_2___default.a.defaults.baseURL = "http://127.0.0.1:8000/api";
 var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a(vue__WEBPACK_IMPORTED_MODULE_0___default.a.util.extend({
   router: _router__WEBPACK_IMPORTED_MODULE_3__["default"]
-}, _App_vue__WEBPACK_IMPORTED_MODULE_4__["default"])).$mount('#app');
+}, _App_vue__WEBPACK_IMPORTED_MODULE_4__["default"])).$mount("#app");
 
 /***/ }),
 
