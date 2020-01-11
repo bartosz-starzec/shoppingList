@@ -15,7 +15,7 @@ class CreateShoppingListsTable extends Migration
     {
         Schema::create('shopping_lists', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('string');
+            $table->string('name');
             $table->timestamps();
         });
     }

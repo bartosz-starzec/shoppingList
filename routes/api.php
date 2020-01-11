@@ -17,3 +17,10 @@ Route::get('/products', 'ProductController@index');
 Route::post('/products/create', 'ProductController@store');
 Route::delete('/products/delete/{id}', 'ProductController@deleteMany');
 
+Route::get('/shopping-lists', 'ShoppingListController@index');
+Route::post('/shopping-lists/create', 'ShoppingListController@store');
+Route::delete('/shopping-lists/delete/{id}', 'ShoppingListController@destroy');
+
+Route::post('/shopping-list-products', 'ShoppingListProductsController@storeMany');
+Route::get('/shopping-list-products/{id}', 'ShoppingListProductsController@show');
+

@@ -2003,6 +2003,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2010,43 +2014,83 @@ __webpack_require__.r(__webpack_exports__);
       products: [],
       shoppingListProducts: [],
       selectedProducts: [],
-      shoppingLists: 1
+      shoppingLists: [],
+      shoppingListId: ''
     };
   },
   created: function created() {
+    var _this = this;
+
     this.getProducts();
+    this.getShoppingLists().then(function () {
+      _this.getShoppingListProducts();
+    });
   },
   methods: {
     getProducts: function getProducts() {
-      var _this = this;
+      var _this2 = this;
 
       this.axios.get("/products").then(function (response) {
-        _this.products = response.data.data;
+        _this2.products = response.data.data;
       });
     },
     addProduct: function addProduct() {
-      var _this2 = this;
+      var _this3 = this;
 
       this.axios.post("products/create", this.product).then(function () {
-        _this2.product.name = "";
+        _this3.product.name = "";
 
-        _this2.getProducts();
+        _this3.getProducts();
       });
     },
     addToShoppingList: function addToShoppingList() {
-      console.log(this.selectedProducts);
+      var _this4 = this;
+
+      this.axios.post('shopping-list-products', {
+        shoppingListId: this.shoppingListId,
+        productsIds: this.selectedProducts
+      }).then(function () {
+        _this4.getShoppingListProducts();
+      });
     },
     deleteProducts: function deleteProducts() {
-      var _this3 = this;
+      var _this5 = this;
 
       if (confirm('Are you sure?')) {
         this.axios["delete"]("products/delete/".concat(this.selectedProducts.toString())).then(function () {
-          _this3.getProducts();
+          _this5.getProducts();
         });
       }
     },
     createShoppingList: function createShoppingList() {
-      this.shoppingLists++;
+      var _this6 = this;
+
+      this.axios.post('shopping-lists/create').then(function () {
+        _this6.getShoppingLists();
+      });
+    },
+    getShoppingLists: function getShoppingLists() {
+      var _this7 = this;
+
+      return this.axios.get('shopping-lists').then(function (response) {
+        _this7.shoppingLists = response.data.data;
+      });
+    },
+    deleteShoppingList: function deleteShoppingList(id) {
+      var _this8 = this;
+
+      this.axios["delete"]("shopping-lists/delete/".concat(id)).then(function () {
+        _this8.getShoppingLists();
+      });
+    },
+    getShoppingListProducts: function getShoppingListProducts() {
+      var _this9 = this;
+
+      this.shoppingLists.forEach(function (shoppingList) {
+        _this9.axios.get("shopping-list-products/".concat(shoppingList.id)).then(function (response) {
+          _this9.$set(_this9.shoppingListProducts, shoppingList.id, response.data.data);
+        });
+      });
     }
   }
 });
@@ -37750,17 +37794,52 @@ var render = function() {
               _c("div", { staticClass: "controls mt-3" }, [
                 _c(
                   "select",
-                  { attrs: { name: "shoppingListId", id: "shoppingListId" } },
-                  _vm._l(_vm.shoppingLists, function(shoppingList) {
-                    return _c("option", { domProps: { value: shoppingList } }, [
-                      _vm._v(
-                        "\n                            Shopping List " +
-                          _vm._s(shoppingList) +
-                          "\n                        "
+                  {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.shoppingListId,
+                        expression: "shoppingListId"
+                      }
+                    ],
+                    attrs: { name: "shoppingListId", id: "shoppingListId" },
+                    on: {
+                      change: function($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function(o) {
+                            return o.selected
+                          })
+                          .map(function(o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.shoppingListId = $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      }
+                    }
+                  },
+                  [
+                    _c("option", { attrs: { disabled: "", value: "" } }, [
+                      _vm._v("Please select one")
+                    ]),
+                    _vm._v(" "),
+                    _vm._l(_vm.shoppingLists, function(shoppingList) {
+                      return _c(
+                        "option",
+                        { domProps: { value: shoppingList.id } },
+                        [
+                          _vm._v(
+                            "\n                            " +
+                              _vm._s(shoppingList.name) +
+                              "\n                        "
+                          )
+                        ]
                       )
-                    ])
-                  }),
-                  0
+                    })
+                  ],
+                  2
                 ),
                 _vm._v(" "),
                 _c(
@@ -37804,7 +37883,7 @@ var render = function() {
         _vm._v(" "),
         _vm._l(_vm.shoppingLists, function(shoppingList) {
           return _c("div", { staticClass: "shoppingList card mb-5" }, [
-            _c("div", { staticClass: "card-header" }, [
+            _c("div", { staticClass: "card-header d-flex" }, [
               _c(
                 "button",
                 {
@@ -37813,18 +37892,30 @@ var render = function() {
                   attrs: {
                     type: "button",
                     "data-toggle": "collapse",
-                    "data-target": "#collapseShoppingList" + shoppingList,
+                    "data-target": "#collapseShoppingList" + shoppingList.id,
                     "aria-expanded": "false",
-                    "aria-controls": "collapseShoppingList" + shoppingList
+                    "aria-controls": "collapseShoppingList" + shoppingList.id
                   }
                 },
                 [
                   _vm._v(
-                    "\n                    Shopping List " +
-                      _vm._s(shoppingList) +
+                    "\n                    " +
+                      _vm._s(shoppingList.name) +
                       "\n                "
                   )
                 ]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  on: {
+                    click: function($event) {
+                      return _vm.deleteShoppingList(shoppingList.id)
+                    }
+                  }
+                },
+                [_vm._v("X")]
               )
             ]),
             _vm._v(" "),
@@ -37832,11 +37923,23 @@ var render = function() {
               "div",
               {
                 staticClass: "collapse card-body",
-                attrs: { id: "collapseShoppingList" + shoppingList }
+                attrs: { id: "collapseShoppingList" + shoppingList.id }
               },
               [
-                _vm._v(
-                  "\n                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.\n                Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea\n                proident.\n            "
+                _c(
+                  "ul",
+                  _vm._l(_vm.shoppingListProducts[shoppingList.id], function(
+                    shoppingListProduct
+                  ) {
+                    return _c("li", [
+                      _vm._v(
+                        "\n                        " +
+                          _vm._s(shoppingListProduct.id) +
+                          "\n                    "
+                      )
+                    ])
+                  }),
+                  0
                 )
               ]
             )

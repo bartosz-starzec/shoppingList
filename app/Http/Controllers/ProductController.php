@@ -12,8 +12,15 @@ use Illuminate\Http\JsonResponse;
 class ProductController extends Controller
 {
 
+    /**
+     * @var ProductRepositoryInterface
+     */
     private $productRepository;
 
+    /**
+     * ProductController constructor.
+     * @param ProductRepositoryInterface $productRepository
+     */
     public function __construct(ProductRepositoryInterface $productRepository)
     {
         $this->productRepository = $productRepository;

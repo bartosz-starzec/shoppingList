@@ -10,7 +10,6 @@ use Illuminate\Http\JsonResponse;
 class ProductRepository implements ProductRepositoryInterface
 {
     /**
-     *
      * @return ProductCollection
      */
     public function all(): ProductCollection

@@ -62,9 +62,10 @@
                     </ul>
 
                     <div class="controls mt-3">
-                        <select name="shoppingListId" id="shoppingListId">
-                            <option v-for="shoppingList in shoppingLists" :value="shoppingList">
-                                Shopping List {{ shoppingList }}
+                        <select name="shoppingListId" id="shoppingListId" v-model="shoppingListId">
+                            <option disabled value="">Please select one</option>
+                            <option v-for="shoppingList in shoppingLists" :value="shoppingList.id">
+                                {{ shoppingList.name }}
                             </option>
                         </select>
                         <button class="btn btn-primary" @click="addToShoppingList">
@@ -80,20 +81,23 @@
                 Create new shopping list
             </button>
             <div v-for="shoppingList in shoppingLists" class="shoppingList card mb-5">
-                <div class="card-header">
+                <div class="card-header d-flex">
                     <button class="btn btn-link w-100 text-decoration-none text-left" type="button"
                             data-toggle="collapse"
-                            :data-target="`#collapseShoppingList${shoppingList}`"
+                            :data-target="`#collapseShoppingList${shoppingList.id}`"
                             aria-expanded="false"
-                            :aria-controls="`collapseShoppingList${shoppingList}`">
-                        Shopping List {{ shoppingList }}
+                            :aria-controls="`collapseShoppingList${shoppingList.id}`">
+                        {{ shoppingList.name }}
                     </button>
+                    <button @click="deleteShoppingList(shoppingList.id)">X</button>
                 </div>
 
-                <div class="collapse card-body" :id="`collapseShoppingList${shoppingList}`">
-                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.
-                    Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea
-                    proident.
+                <div class="collapse card-body" :id="`collapseShoppingList${shoppingList.id}`">
+                    <ul>
+                        <li v-for="shoppingListProduct in shoppingListProducts[shoppingList.id]">
+                            {{shoppingListProduct.id}}
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -108,11 +112,15 @@
                 products: [],
                 shoppingListProducts: [],
                 selectedProducts: [],
-                shoppingLists: 1
+                shoppingLists: [],
+                shoppingListId: '',
             };
         },
         created() {
             this.getProducts();
+            this.getShoppingLists().then(() => {
+                this.getShoppingListProducts();
+            });
         },
         methods: {
             getProducts() {
@@ -127,7 +135,12 @@
                 });
             },
             addToShoppingList() {
-                console.log(this.selectedProducts);
+                this.axios.post('shopping-list-products', {
+                    shoppingListId: this.shoppingListId,
+                    productsIds: this.selectedProducts
+                }).then(() => {
+                    this.getShoppingListProducts();
+                })
             },
             deleteProducts() {
                 if (confirm('Are you sure?')) {
@@ -137,7 +150,26 @@
                 }
             },
             createShoppingList() {
-                this.shoppingLists++;
+                this.axios.post('shopping-lists/create').then(() => {
+                    this.getShoppingLists();
+                });
+            },
+            getShoppingLists() {
+                return this.axios.get('shopping-lists').then((response) => {
+                    this.shoppingLists = response.data.data;
+                })
+            },
+            deleteShoppingList(id) {
+                this.axios.delete(`shopping-lists/delete/${id}`).then(() => {
+                    this.getShoppingLists();
+                })
+            },
+            getShoppingListProducts() {
+                this.shoppingLists.forEach((shoppingList) => {
+                    this.axios.get(`shopping-list-products/${shoppingList.id}`).then((response) => {
+                        this.$set(this.shoppingListProducts, shoppingList.id, response.data.data);
+                    })
+                });
             }
         }
     };
