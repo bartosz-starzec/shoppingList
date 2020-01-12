@@ -21,10 +21,6 @@ class AppServiceProvider extends ServiceProvider
             'App\Repositories\ShoppingListRepositoryInterface',
             'App\Repositories\ShoppingListRepository'
         );
-        $this->app->bind(
-            'App\Repositories\ShoppingListProductsRepositoryInterface',
-            'App\Repositories\ShoppingListProductsRepository'
-        );
     }
 
     /**

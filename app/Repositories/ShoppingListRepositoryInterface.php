@@ -22,4 +22,11 @@ interface ShoppingListRepositoryInterface
      */
     public function delete(int $id): JsonResponse;
 
+    /**
+     * @param int $shoppingListId
+     * @param array $productsId
+     * @return JsonResponse
+     */
+    public function addProducts(int $shoppingListId, array $productsId): JsonResponse;
+
 }

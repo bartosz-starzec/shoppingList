@@ -3,18 +3,18 @@
 namespace App\Repositories;
 
 use App\Product;
-use App\Http\Resources\ProductCollection;
 use App\Repositories\ProductRepositoryInterface;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class ProductRepository implements ProductRepositoryInterface
 {
     /**
-     * @return ProductCollection
+     * @return ResourceCollection
      */
-    public function all(): ProductCollection
+    public function all(): ResourceCollection
     {
-        return new ProductCollection(Product::all());
+        return new ResourceCollection(Product::all());
     }
 
     /**

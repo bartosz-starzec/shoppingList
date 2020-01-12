@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Repositories\ShoppingListRepositoryInterface;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 use Illuminate\Routing\Controller;
 
@@ -40,8 +41,15 @@ class ShoppingListController extends Controller
      * @param $request
      * @return JsonResponse
      */
-    public function destroy($request): JsonResponse
+    public function destroy(Request $request): JsonResponse
     {
         return $this->shoppingListRepository->delete($request);
+    }
+
+    public function storeProducts(Request $request)
+    {
+        $shoppingListId = $request->route('id');
+        $productsIds = explode(',', $request->get('productsIds'));
+        $this->shoppingListRepository->addProducts($shoppingListId, $productsIds);
     }
 }

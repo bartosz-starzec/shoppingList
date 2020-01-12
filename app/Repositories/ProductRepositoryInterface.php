@@ -2,15 +2,15 @@
 
 namespace App\Repositories;
 
-use App\Http\Resources\ProductCollection;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Resources\Json\ResourceCollection;
 
 interface ProductRepositoryInterface
 {
     /**
-     * @return ProductCollection
+     * @return ResourceCollection
      */
-    public function all(): ProductCollection;
+    public function all(): ResourceCollection;
 
     /**
      * @param string $name

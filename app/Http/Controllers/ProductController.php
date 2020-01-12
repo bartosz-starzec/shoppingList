@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Product;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\ResourceCollection;
 use Illuminate\Routing\Controller;
-use App\Http\Resources\ProductCollection;
 use App\Repositories\ProductRepositoryInterface;
 use Illuminate\Http\JsonResponse;
 
@@ -27,9 +26,9 @@ class ProductController extends Controller
     }
 
     /**
-     * @return ProductCollection
+     * @return ResourceCollection
      */
-    public function index(): ProductCollection
+    public function index(): ResourceCollection
     {
         return $this->productRepository->all();
     }

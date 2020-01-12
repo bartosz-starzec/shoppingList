@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Product;
 use App\ShoppingList;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\ResourceCollection;
@@ -43,4 +44,21 @@ class ShoppingListRepository implements ShoppingListRepositoryInterface
         return response()->json('success');
     }
 
+    /**
+     * @param int $shoppingListId
+     * @param array $productsId
+     * @return JsonResponse
+     */
+    public function addProducts(int $shoppingListId, array $productsId): JsonResponse
+    {
+        $shoppingList = ShoppingList::find($shoppingListId);
+        $products = [];
+        foreach ($productsId as $productId) {
+            $products[] = Product::find($productId);
+        }
+
+        $shoppingList->products()->saveMany($products);
+
+        return response()->json('success');
+    }
 }
