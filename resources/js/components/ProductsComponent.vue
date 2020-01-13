@@ -78,14 +78,22 @@
 </template>
 
 <script>
+    import {mapGetters} from 'vuex';
+
     export default {
         name: "ProductsComponent",
         data() {
             return {
                 product: {},
                 selectedProducts: [],
-                products: []
+                shoppingListId: ''
             }
+        },
+        computed: {
+            ...mapGetters({
+                products: 'getProducts',
+                shoppingLists: 'getShoppingLists'
+            })
         },
         mounted() {
             this.getProducts();
@@ -98,14 +106,12 @@
                 });
             },
             getProducts() {
-                this.axios.get("/products").then(response => {
-                    this.products = response.data.data;
-                });
+                this.$store.dispatch('getProducts');
             },
             addToShoppingList() {
-                this.axios.post(`shopping-lists/${this.shoppingListId}/addProducts`, {
-                    productsIds: this.selectedProducts
-                });
+                // this.axios.post(`shopping-lists/${this.shoppingListId}/addProducts`, {
+                //     productsIds: this.selectedProducts
+                // });
             },
             deleteProducts() {
                 if (confirm('Are you sure?')) {

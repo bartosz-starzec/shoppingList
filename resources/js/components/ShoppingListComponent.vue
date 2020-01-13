@@ -24,12 +24,18 @@
 </template>
 
 <script>
+    import {mapGetters} from 'vuex';
+
     export default {
         name: "ShoppingListComponent",
         data() {
             return {
-                shoppingLists: []
             }
+        },
+        computed: {
+            ...mapGetters({
+                shoppingLists: 'getShoppingLists'
+            })
         },
         mounted() {
             this.getShoppingLists();
@@ -41,9 +47,7 @@
                 })
             },
             getShoppingLists() {
-                return this.axios.get('shopping-lists').then((response) => {
-                    this.shoppingLists = response.data.data;
-                })
+                this.$store.dispatch('getShoppingLists');
             },
         }
     }
