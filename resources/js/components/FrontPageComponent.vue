@@ -26,10 +26,9 @@
             };
         },
         methods: {
-
             createShoppingList() {
                 this.axios.post('shopping-lists/create').then(() => {
-                    this.getShoppingLists();
+                    this.$store.dispatch('getShoppingLists');
                 });
             },
         }

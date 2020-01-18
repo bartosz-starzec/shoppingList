@@ -43,6 +43,11 @@ class ProductController extends Controller
         return $this->productRepository->save($request->get('name'));
     }
 
+    public function update(Request $request)
+    {
+        return $this->productRepository->update($request->get('id'), $request->get('name'));
+    }
+
     /**
      * @param string $ids
      * @return void

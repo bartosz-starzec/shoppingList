@@ -20,6 +20,13 @@ interface ProductRepositoryInterface
 
     /**
      * @param int $id
+     * @param string $name
+     * @return JsonResponse
+     */
+    public function update(int $id, string $name): JsonResponse;
+
+    /**
+     * @param int $id
      * @return bool
      */
     public function delete(int $id): bool;

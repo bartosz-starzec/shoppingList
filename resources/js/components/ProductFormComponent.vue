@@ -1,0 +1,76 @@
+<template>
+    <form v-if="display === true" class="form-inline" @submit.prevent="saveProduct">
+        <div class="form-group">
+            <label
+                for="prodcut-name"
+                class="prodcut-name d-block sr-only"
+            >
+                Product name:
+            </label>
+            <input
+                type="text"
+                name="prodcut-id"
+                id="prodcut-id"
+                class="form-control mr-2 d-none"
+                placeholder="Id"
+                v-model="product.id"
+            />
+            <input
+                type="text"
+                name="prodcut-name"
+                id="prodcut-name"
+                class="form-control mr-2"
+                placeholder="Name"
+                v-model="product.name"
+            />
+        </div>
+        <div class="form-group">
+            <button class="btn btn-success" v-if="editForm === true" @click="updateProduct">Edit product</button>
+            <button class="btn btn-success" v-else>Add product</button>
+        </div>
+    </form>
+</template>
+
+<script>
+    export default {
+        name: "ProductFormComponent",
+        props: {
+            display: Boolean,
+            editForm: Boolean,
+            product: Object
+        },
+        data() {
+            return {
+            }
+        },
+        methods: {
+            saveProduct() {
+                if(this.editForm === true) {
+                    this.updateProduct();
+                } else {
+                    this.addProduct();
+                }
+            },
+            addProduct() {
+                this.axios.post("products/create", this.product).then(() => {
+                    this.product.name = "";
+                    this.getProducts();
+                });
+            },
+            updateProduct() {
+                this.axios.post("products/update", this.product).then(() => {
+                    this.product.name = "";
+                    this.product.id = "";
+                    this.getProducts();
+                });
+            },
+            getProducts() {
+                this.$store.dispatch('getProducts');
+            },
+        }
+    }
+</script>
+
+<style scoped>
+
+</style>

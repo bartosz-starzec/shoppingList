@@ -37,7 +37,7 @@
                 shoppingLists: 'getShoppingLists'
             })
         },
-        mounted() {
+        created() {
             this.getShoppingLists();
         },
         methods: {

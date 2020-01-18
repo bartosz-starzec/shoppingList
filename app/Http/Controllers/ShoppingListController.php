@@ -43,13 +43,13 @@ class ShoppingListController extends Controller
      */
     public function destroy(Request $request): JsonResponse
     {
-        return $this->shoppingListRepository->delete($request);
+        return $this->shoppingListRepository->delete($request->route('id'));
     }
 
     public function storeProducts(Request $request)
     {
         $shoppingListId = $request->route('id');
-        $productsIds = explode(',', $request->get('productsIds'));
+        $productsIds = $request->get('productsIds');
         $this->shoppingListRepository->addProducts($shoppingListId, $productsIds);
     }
 }

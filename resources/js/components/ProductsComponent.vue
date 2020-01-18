@@ -4,62 +4,42 @@
             <button
                 class="btn btn-link w-100 text-decoration-none text-left"
                 type="button"
-                data-toggle="collapse"
-                data-target="#collapseProducts"
-                aria-expanded="true"
-                aria-controls="collapseProducts"
             >
                 Products
             </button>
         </div>
-        <div class="collapseProducts card-body" id="collapseProducts">
+        <div class="card-body">
             <div class="products__new p-3">
                 <button
-                    class="btn btn-link w-100 text-decoration-none text-left"
+                    class="btn btn-primary text-left mb-2"
                     type="button"
-                    data-toggle="collapse"
-                    data-target="#collapse-add-product"
-                    aria-expanded="false"
-                    aria-controls="collapse-add-product"
+                    @click="createProductForm"
                 >
-                    Add new product &#x21e9
+                    Add new product
                 </button>
-                <div class="add-product collapse" id="collapse-add-product">
-                    <form class="form-inline" @submit.prevent="addProduct">
-                        <div class="form-group">
-                            <label
-                                for="prodcut-name"
-                                class="prodcut-name d-block sr-only"
-                            >
-                                Product name:
-                            </label>
-                            <input
-                                type="text"
-                                name="prodcut-name"
-                                id="prodcut-name"
-                                class="form-control mr-2"
-                                placeholder="Name"
-                                v-model="product.name"
-                            />
-                        </div>
-                        <div class="form-group">
-                            <button class="btn btn-success">+</button>
-                        </div>
-                    </form>
+                <div class="add-product">
+                    <product-form-component :display="displayForm" :editForm="editForm" :product="product"></product-form-component>
                 </div>
             </div>
 
             <ul class="list-group">
                 <li class="list-group-item" v-for="product in products" v-bind:key="product.id">
-                    <label :for="product.id" class="form-group m-1 w-100 select-product">
-                        <input type="checkbox" :name="product.id" :id="product.id" :value="product.id"
+                    <label :for="product.id" class="form-group m-1 w-100 select-product d-flex align-items-center">
+                        <input type="checkbox" class="mr-1" :name="product.id" :id="product.id" :value="product.id"
                                v-model="selectedProducts">
                         {{ product.name }}
+                        <button class="btn btn-primary ml-auto"
+                                data-toggle="collapse"
+                                data-target="#collapse-add-product"
+                                aria-expanded="false"
+                                aria-controls="collapse-add-product"
+                                @click="editProductForm(product.id)"
+                        > Edit </button>
                     </label>
                 </li>
             </ul>
             <div class="controls mt-3">
-                <select name="shoppingListId" id="shoppingListId" v-model="shoppingListId">
+                <select name="shoppingListId" id="shoppingListId" @change="setShoppingListId" v-model="shoppingListId">
                     <option disabled value="">Please select one</option>
                     <option v-for="shoppingList in shoppingLists" :value="shoppingList.id">
                         {{ shoppingList.name }}
@@ -80,13 +60,18 @@
 <script>
     import {mapGetters} from 'vuex';
 
+    import ProductFormComponent from "./ProductFormComponent";
+
     export default {
         name: "ProductsComponent",
+        components: {ProductFormComponent},
         data() {
             return {
                 product: {},
                 selectedProducts: [],
-                shoppingListId: ''
+                shoppingListId: '',
+                displayForm: false,
+                editForm: false
             }
         },
         computed: {
@@ -99,19 +84,22 @@
             this.getProducts();
         },
         methods: {
-            addProduct() {
-                this.axios.post("products/create", this.product).then(() => {
-                    this.product.name = "";
-                    this.getProducts();
-                });
+            createProductForm() {
+                this.displayForm = true;
+                this.editForm = false;
+                this.product = {};
             },
             getProducts() {
                 this.$store.dispatch('getProducts');
             },
             addToShoppingList() {
-                // this.axios.post(`shopping-lists/${this.shoppingListId}/addProducts`, {
-                //     productsIds: this.selectedProducts
-                // });
+                this.axios.post(`shopping-lists/${this.shoppingListId}/add-products`, {
+                    productsIds: this.selectedProducts
+                })
+                .then(() => {
+                    this.$store.dispatch('getShoppingLists');
+                    this.selectedProducts = [];
+                });
             },
             deleteProducts() {
                 if (confirm('Are you sure?')) {
@@ -120,6 +108,16 @@
                     });
                 }
             },
+            setShoppingListId() {
+                this.$store.dispatch('setActiveShoppingList', this.shoppingListId);
+            },
+            editProductForm(id) {
+                this.displayForm = true;
+                this.editForm = true;
+                const name = this.products.find(product => product.id === id).name;
+                this.$set(this.product, 'name', name);
+                this.$set(this.product, 'id', id);
+            }
         }
     }
 </script>

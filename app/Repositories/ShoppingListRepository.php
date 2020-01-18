@@ -40,6 +40,7 @@ class ShoppingListRepository implements ShoppingListRepositoryInterface
     {
         $shoppingList = ShoppingList::find($id);
         $shoppingList->delete();
+        $shoppingList->products()->delete();
 
         return response()->json('success');
     }

@@ -57,4 +57,19 @@ class ProductRepository implements ProductRepositoryInterface
 
         return true;
     }
+
+    /**
+     * @param int $id
+     * @param string $name
+     * @return JsonResponse
+     */
+    public function update(int $id, string $name): JsonResponse
+    {
+        $product = Product::find($id);
+        $product->name = $name;
+
+        $product->save();
+
+        return response()->json('success');
+    }
 }
