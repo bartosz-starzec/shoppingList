@@ -18,7 +18,8 @@
                     Add new product
                 </button>
                 <div class="add-product">
-                    <product-form-component :display="displayForm" :editForm="editForm" :product="product"></product-form-component>
+                    <product-form-component :display="displayForm" :editForm="editForm"
+                                            :product="product"></product-form-component>
                 </div>
             </div>
 
@@ -34,7 +35,8 @@
                                 aria-expanded="false"
                                 aria-controls="collapse-add-product"
                                 @click="editProductForm(product.id)"
-                        > Edit </button>
+                        > Edit
+                        </button>
                     </label>
                 </li>
             </ul>
@@ -42,7 +44,7 @@
                 <select name="shoppingListId" id="shoppingListId" @change="setShoppingListId" v-model="shoppingListId">
                     <option disabled value="">Please select one</option>
                     <option v-for="shoppingList in shoppingLists" :value="shoppingList.id">
-                        {{ shoppingList.name }}
+                        {{ shoppingList.name + shoppingList.id}}
                     </option>
                 </select>
                 <button class="btn btn-primary" @click="addToShoppingList">
@@ -71,7 +73,8 @@
                 selectedProducts: [],
                 shoppingListId: '',
                 displayForm: false,
-                editForm: false
+                editForm: false,
+                jobKey: 'test'
             }
         },
         computed: {
@@ -93,13 +96,17 @@
                 this.$store.dispatch('getProducts');
             },
             addToShoppingList() {
+                if (!this.isValidShoppingListSelected()) {
+                    return;
+                }
                 this.axios.post(`shopping-lists/${this.shoppingListId}/add-products`, {
-                    productsIds: this.selectedProducts
+                    productsIds: this.selectedProducts,
+                    jobKey: this.jobKey
                 })
-                .then(() => {
-                    this.$store.dispatch('getShoppingLists');
-                    this.selectedProducts = [];
-                });
+                    .then(() => {
+                        this.checkForJobResult();
+                        this.selectedProducts = [];
+                    });
             },
             deleteProducts() {
                 if (confirm('Are you sure?')) {
@@ -117,6 +124,40 @@
                 const name = this.products.find(product => product.id === id).name;
                 this.$set(this.product, 'name', name);
                 this.$set(this.product, 'id', id);
+            },
+            checkForJobResult() {
+                let counter = 0;
+                const limit = 10;
+                const interval = setInterval(() => {
+                    this.getJobStatus()
+                        .then((response) => {
+                            console.log(response);
+                            if (Object.keys(response.data).length !== 0) {
+                                this.$store.dispatch('getShoppingLists');
+                                clearInterval(interval);
+                            }
+                            counter++;
+                            if (counter === limit) {
+                                this.$store.dispatch('getShoppingLists');
+                                clearInterval(interval);
+                            }
+                        })
+                }, 500);
+            },
+            getJobStatus() {
+                return this.axios.post(`shopping-lists/job-status`, {
+                    jobKey: this.jobKey,
+                    redisKey: 'key'
+                }).then((response) => {
+                    return response;
+                })
+            },
+            isValidShoppingListSelected() {
+                if (this.shoppingListId === '') {
+                    alert('Select valid shopping list!');
+                    return false;
+                }
+                return true;
             }
         }
     }

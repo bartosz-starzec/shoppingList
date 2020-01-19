@@ -2067,8 +2067,20 @@ __webpack_require__.r(__webpack_exports__);
         this.addProduct();
       }
     },
+    checkForm: function checkForm() {
+      if (!this.product.name || this.product.name === '') {
+        alert('Invalid name');
+        return false;
+      }
+
+      return true;
+    },
     addProduct: function addProduct() {
       var _this = this;
+
+      if (!this.checkForm()) {
+        return;
+      }
 
       this.axios.post("products/create", this.product).then(function () {
         _this.product.name = "";
@@ -2078,6 +2090,10 @@ __webpack_require__.r(__webpack_exports__);
     },
     updateProduct: function updateProduct() {
       var _this2 = this;
+
+      if (!this.checkForm()) {
+        return;
+      }
 
       this.axios.post("products/update", this.product).then(function () {
         _this2.product.name = "";
@@ -2170,6 +2186,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2183,7 +2201,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       selectedProducts: [],
       shoppingListId: '',
       displayForm: false,
-      editForm: false
+      editForm: false,
+      jobKey: 'test'
     };
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])({
@@ -2205,10 +2224,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     addToShoppingList: function addToShoppingList() {
       var _this = this;
 
+      if (!this.isValidShoppingListSelected()) {
+        return;
+      }
+
       this.axios.post("shopping-lists/".concat(this.shoppingListId, "/add-products"), {
-        productsIds: this.selectedProducts
+        productsIds: this.selectedProducts,
+        jobKey: this.jobKey
       }).then(function () {
-        _this.$store.dispatch('getShoppingLists');
+        _this.checkForJobResult();
 
         _this.selectedProducts = [];
       });
@@ -2233,6 +2257,47 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }).name;
       this.$set(this.product, 'name', name);
       this.$set(this.product, 'id', id);
+    },
+    checkForJobResult: function checkForJobResult() {
+      var _this3 = this;
+
+      var counter = 0;
+      var limit = 10;
+      var interval = setInterval(function () {
+        _this3.getJobStatus().then(function (response) {
+          console.log(response);
+
+          if (Object.keys(response.data).length !== 0) {
+            _this3.$store.dispatch('getShoppingLists');
+
+            clearInterval(interval);
+          }
+
+          counter++;
+
+          if (counter === limit) {
+            _this3.$store.dispatch('getShoppingLists');
+
+            clearInterval(interval);
+          }
+        });
+      }, 500);
+    },
+    getJobStatus: function getJobStatus() {
+      return this.axios.post("shopping-lists/job-status", {
+        jobKey: this.jobKey,
+        redisKey: 'key'
+      }).then(function (response) {
+        return response;
+      });
+    },
+    isValidShoppingListSelected: function isValidShoppingListSelected() {
+      if (this.shoppingListId === '') {
+        alert('Select valid shopping list!');
+        return false;
+      }
+
+      return true;
     }
   }
 });
@@ -38024,7 +38089,7 @@ var render = function() {
                       }
                     }
                   },
-                  [_vm._v(" Edit ")]
+                  [_vm._v(" Edit\n                    ")]
                 )
               ]
             )
@@ -38074,7 +38139,7 @@ var render = function() {
               return _c("option", { domProps: { value: shoppingList.id } }, [
                 _vm._v(
                   "\n                    " +
-                    _vm._s(shoppingList.name) +
+                    _vm._s(shoppingList.name + shoppingList.id) +
                     "\n                "
                 )
               ])
@@ -38159,7 +38224,7 @@ var render = function() {
             [
               _vm._v(
                 "\n                " +
-                  _vm._s(shoppingList.name) +
+                  _vm._s(shoppingList.name + shoppingList.id) +
                   "\n            "
               )
             ]

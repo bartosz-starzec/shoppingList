@@ -6,6 +6,7 @@ use App\Product;
 use App\ShoppingList;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\ResourceCollection;
+use Illuminate\Support\Facades\Redis;
 
 class ShoppingListRepository implements ShoppingListRepositoryInterface
 {
@@ -14,9 +15,8 @@ class ShoppingListRepository implements ShoppingListRepositoryInterface
      */
     public function save(): JsonResponse
     {
-        $count = count(ShoppingList::all());
         $shoppingList = new ShoppingList([
-            'name' => 'Shopping List ' . $count
+            'name' => 'Shopping List '
         ]);
 
         $shoppingList->save();
@@ -47,19 +47,15 @@ class ShoppingListRepository implements ShoppingListRepositoryInterface
 
     /**
      * @param int $shoppingListId
-     * @param array $productsId
-     * @return JsonResponse
+     * @param Product $product
+     * @return bool
      */
-    public function addProducts(int $shoppingListId, array $productsId): JsonResponse
+    public function addProduct(int $shoppingListId, Product $product): bool
     {
         $shoppingList = ShoppingList::find($shoppingListId);
-        $products = [];
-        foreach ($productsId as $productId) {
-            $products[] = Product::find($productId);
-        }
 
-        $shoppingList->products()->saveMany($products);
+        $shoppingList->products()->save($product);
 
-        return response()->json('success');
+        return true;
     }
 }

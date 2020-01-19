@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\Jobs;
+use App\Jobs\ProcessAddToShoppingList;
 use App\Repositories\ShoppingListRepositoryInterface;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 use Illuminate\Routing\Controller;
+use Psr\SimpleCache\InvalidArgumentException;
 
 class ShoppingListController extends Controller
 {
@@ -16,12 +19,19 @@ class ShoppingListController extends Controller
     private $shoppingListRepository;
 
     /**
+     * @var Jobs
+     */
+    private $jobs;
+
+    /**
      * ShoppingListController constructor.
      * @param ShoppingListRepositoryInterface $shoppingListRepository
+     * @param Jobs $jobs
      */
-    public function __construct(ShoppingListRepositoryInterface $shoppingListRepository)
+    public function __construct(ShoppingListRepositoryInterface $shoppingListRepository, Jobs $jobs)
     {
         $this->shoppingListRepository = $shoppingListRepository;
+        $this->jobs = $jobs;
     }
 
     /**
@@ -46,10 +56,30 @@ class ShoppingListController extends Controller
         return $this->shoppingListRepository->delete($request->route('id'));
     }
 
-    public function storeProducts(Request $request)
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function storeProducts(Request $request): JsonResponse
     {
         $shoppingListId = $request->route('id');
         $productsIds = $request->get('productsIds');
-        $this->shoppingListRepository->addProducts($shoppingListId, $productsIds);
+        $jobKey = $request->get('jobKey');
+
+        ProcessAddToShoppingList::dispatch($shoppingListId, $productsIds, $jobKey);
+
+        $returnMessage = 'Adding ' . count($productsIds) . ' products to shopping list ' . $shoppingListId . '...';
+
+        return response()->json($returnMessage);
+    }
+
+    /**
+     * @param Request $request
+     * @return mixed
+     * @throws InvalidArgumentException
+     */
+    public function getJobStatus(Request $request)
+    {
+        return response()->json($this->jobs->getJobStatus($request->get('jobKey')));
     }
 }

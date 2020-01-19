@@ -1,6 +1,7 @@
 <?php
 namespace App\Repositories;
 
+use App\Product;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
@@ -24,9 +25,9 @@ interface ShoppingListRepositoryInterface
 
     /**
      * @param int $shoppingListId
-     * @param array $productsId
-     * @return JsonResponse
+     * @param Product $product
+     * @return bool
      */
-    public function addProducts(int $shoppingListId, array $productsId): JsonResponse;
+    public function addProduct(int $shoppingListId, Product $product): bool;
 
 }

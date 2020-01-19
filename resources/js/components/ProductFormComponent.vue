@@ -51,13 +51,26 @@
                     this.addProduct();
                 }
             },
+            checkForm() {
+                if (!this.product.name || this.product.name === '') {
+                    alert('Invalid name');
+                    return false;
+                }
+                return true;
+            },
             addProduct() {
+                if (!this.checkForm()) {
+                    return;
+                }
                 this.axios.post("products/create", this.product).then(() => {
                     this.product.name = "";
                     this.getProducts();
                 });
             },
             updateProduct() {
+                if (!this.checkForm()) {
+                    return;
+                }
                 this.axios.post("products/update", this.product).then(() => {
                     this.product.name = "";
                     this.product.id = "";

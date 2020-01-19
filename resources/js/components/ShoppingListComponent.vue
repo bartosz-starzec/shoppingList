@@ -7,7 +7,7 @@
                         :data-target="`#collapseShoppingList${shoppingList.id}`"
                         aria-expanded="false"
                         :aria-controls="`collapseShoppingList${shoppingList.id}`">
-                    {{ shoppingList.name }}
+                    {{ shoppingList.name + shoppingList.id}}
                 </button>
                 <button @click="deleteShoppingList(shoppingList.id)">X</button>
             </div>
