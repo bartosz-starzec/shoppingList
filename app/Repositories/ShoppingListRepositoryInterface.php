@@ -30,4 +30,11 @@ interface ShoppingListRepositoryInterface
      */
     public function addProduct(int $shoppingListId, Product $product): bool;
 
+    /**
+     * @param int $shoppingListId
+     * @param int $productId
+     * @return bool
+     */
+    public function removeProduct(int $shoppingListId, int $productId): bool;
+
 }

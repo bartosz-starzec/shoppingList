@@ -22,6 +22,7 @@ Route::get('/shopping-lists', 'ShoppingListController@index');
 Route::post('/shopping-lists/create', 'ShoppingListController@store');
 Route::delete('/shopping-lists/delete/{id}', 'ShoppingListController@destroy');
 Route::post('/shopping-lists/{id}/add-products', 'ShoppingListController@storeProducts');
+Route::post('/shopping-lists/{id}/products/delete', 'ShoppingListController@removeProducts');
 
 Route::post('/shopping-lists/job-status', 'ShoppingListController@getJobStatus');
 

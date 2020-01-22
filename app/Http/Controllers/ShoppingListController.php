@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Jobs\Jobs;
 use App\Jobs\ProcessAddToShoppingList;
+use App\Jobs\ProcessRemoveFromShoppingList;
 use App\Repositories\ShoppingListRepositoryInterface;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -69,6 +70,19 @@ class ShoppingListController extends Controller
         ProcessAddToShoppingList::dispatch($shoppingListId, $productsIds, $jobKey);
 
         $returnMessage = 'Adding ' . count($productsIds) . ' products to shopping list ' . $shoppingListId . '...';
+
+        return response()->json($returnMessage);
+    }
+
+    public function removeProducts(Request $request)
+    {
+        $shoppingListId = $request->route('id');
+        $productsIds = $request->get('productsIds');
+        $jobKey = $request->get('jobKey');
+
+        ProcessRemoveFromShoppingList::dispatch($shoppingListId, $productsIds, $jobKey);
+
+        $returnMessage = 'Removing ' . count($productsIds) . ' products from shopping list ' . $shoppingListId . '...';
 
         return response()->json($returnMessage);
     }

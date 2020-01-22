@@ -39,8 +39,8 @@ class ShoppingListRepository implements ShoppingListRepositoryInterface
     public function delete(int $id): JsonResponse
     {
         $shoppingList = ShoppingList::find($id);
-        $shoppingList->delete();
         $shoppingList->products()->delete();
+        $shoppingList->delete();
 
         return response()->json('success');
     }
@@ -54,7 +54,21 @@ class ShoppingListRepository implements ShoppingListRepositoryInterface
     {
         $shoppingList = ShoppingList::find($shoppingListId);
 
-        $shoppingList->products()->save($product);
+        $shoppingList->products()->attach($product);
+
+        return true;
+    }
+
+    /**
+     * @param int $shoppingListId
+     * @param int $productId
+     * @return bool
+     */
+    public function removeProduct(int $shoppingListId, int $productId): bool
+    {
+        $shoppingList = ShoppingList::find($shoppingListId);
+
+        $shoppingList->products()->detach([$productId]);
 
         return true;
     }

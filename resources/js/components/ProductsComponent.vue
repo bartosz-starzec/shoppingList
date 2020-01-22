@@ -25,8 +25,8 @@
 
             <ul class="list-group">
                 <li class="list-group-item" v-for="product in products" v-bind:key="product.id">
-                    <label :for="product.id" class="form-group m-1 w-100 select-product d-flex align-items-center">
-                        <input type="checkbox" class="mr-1" :name="product.id" :id="product.id" :value="product.id"
+                    <label :for="`product-${product.id}`" class="form-group m-1 w-100 select-product d-flex align-items-center">
+                        <input type="checkbox" class="mr-1" :name="product.id" :id="`product-${product.id}`" :value="product.id"
                                v-model="selectedProducts">
                         {{ product.name }}
                         <button class="btn btn-primary ml-auto"
@@ -74,7 +74,7 @@
                 shoppingListId: '',
                 displayForm: false,
                 editForm: false,
-                jobKey: 'test'
+                jobKey: 'addedProducts'
             }
         },
         computed: {
@@ -102,11 +102,10 @@
                 this.axios.post(`shopping-lists/${this.shoppingListId}/add-products`, {
                     productsIds: this.selectedProducts,
                     jobKey: this.jobKey
-                })
-                    .then(() => {
-                        this.checkForJobResult();
-                        this.selectedProducts = [];
-                    });
+                }).then(() => {
+                    this.checkForJobResult();
+                    this.selectedProducts = [];
+                });
             },
             deleteProducts() {
                 if (confirm('Are you sure?')) {
@@ -131,8 +130,7 @@
                 const interval = setInterval(() => {
                     this.getJobStatus()
                         .then((response) => {
-                            console.log(response);
-                            if (Object.keys(response.data).length !== 0) {
+                            if (response.data.jobKey === this.jobKey) {
                                 this.$store.dispatch('getShoppingLists');
                                 clearInterval(interval);
                             }
@@ -146,8 +144,7 @@
             },
             getJobStatus() {
                 return this.axios.post(`shopping-lists/job-status`, {
-                    jobKey: this.jobKey,
-                    redisKey: 'key'
+                    jobKey: this.jobKey
                 }).then((response) => {
                     return response;
                 })

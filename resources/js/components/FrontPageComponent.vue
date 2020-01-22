@@ -6,17 +6,17 @@
             <button class="btn btn-primary mb-3" @click="createShoppingList">
                 Create new shopping list
             </button>
-           <shopping-list-component></shopping-list-component>
+           <shopping-lists-component></shopping-lists-component>
         </div>
     </div>
 </template>
 
 <script>
     import ProductsComponent from "./ProductsComponent";
-    import ShoppingListComponent from "./ShoppingListComponent";
+    import ShoppingListsComponent from "./ShoppingLists/ShoppingListsComponent";
 
     export default {
-        components: {ShoppingListComponent, ProductsComponent},
+        components: {ShoppingListsComponent, ProductsComponent},
         data() {
             return {
                 product: {},

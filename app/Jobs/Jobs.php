@@ -36,7 +36,10 @@ class Jobs
             $this->cacheRepository->delete($jobKey);
         }
 
-        return $cacheData;
+        return [
+            'jobKey' => $jobKey,
+            'data' => $cacheData
+        ];
     }
 
 }

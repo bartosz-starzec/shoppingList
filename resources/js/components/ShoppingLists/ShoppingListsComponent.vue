@@ -11,25 +11,21 @@
                 </button>
                 <button @click="deleteShoppingList(shoppingList.id)">X</button>
             </div>
-
-            <div class="collapse card-body" :id="`collapseShoppingList${shoppingList.id}`">
-                <ul>
-                    <li v-for="shoppingListProduct in shoppingList.products">
-                        {{shoppingListProduct.name}}
-                    </li>
-                </ul>
-            </div>
+            <shopping-list-component :id="shoppingList.id" :products="shoppingList.products"></shopping-list-component>
         </div>
     </div>
 </template>
 
 <script>
     import {mapGetters} from 'vuex';
+    import ShoppingListComponent from "./ShoppingList/ShoppingListComponent";
 
     export default {
-        name: "ShoppingListComponent",
+        name: "ShoppingListsComponent",
+        components: {ShoppingListComponent},
         data() {
             return {
+                selectedProducts: []
             }
         },
         computed: {
