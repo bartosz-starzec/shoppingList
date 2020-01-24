@@ -28,7 +28,10 @@ class ProductRepository implements ProductRepositoryInterface
             'name' => $name
         ]);
 
-        $product->save();
+        try {
+            $product->save();
+        } catch (\Exception $exception) {
+        }
 
         return response()->json('success');
     }
