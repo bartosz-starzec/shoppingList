@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d66b7713-1aa2-47d5-863a-5f02157da467" name="Default Changelist" comment="">
+    <list default="true" id="d66b7713-1aa2-47d5-863a-5f02157da467" name="Default Changelist" comment="saving products on shopping list through Laravel Job">
       <change afterPath="$PROJECT_DIR$/resources/js/components/AlertComponent.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Jobs/ProcessAddToShoppingList.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Jobs/ProcessAddToShoppingList.php" afterDir="false" />
@@ -228,7 +228,7 @@
       <workItem from="1579338844663" duration="7409000" />
       <workItem from="1579434852112" duration="10272000" />
       <workItem from="1579718035430" duration="5839000" />
-      <workItem from="1579883318002" duration="5136000" />
+      <workItem from="1579883318002" duration="5410000" />
     </task>
     <task id="LOCAL-00001" summary="creating shoppingLists, adding products to shoppingLists and displaying them">
       <created>1578742066662</created>
