@@ -25,8 +25,10 @@
 
             <ul class="list-group">
                 <li class="list-group-item" v-for="product in products" v-bind:key="product.id">
-                    <label :for="`product-${product.id}`" class="form-group m-1 w-100 select-product d-flex align-items-center">
-                        <input type="checkbox" class="mr-1" :name="product.id" :id="`product-${product.id}`" :value="product.id"
+                    <label :for="`product-${product.id}`"
+                           class="form-group m-1 w-100 select-product d-flex align-items-center">
+                        <input type="checkbox" class="mr-1" :name="product.id" :id="`product-${product.id}`"
+                               :value="product.id"
                                v-model="selectedProducts">
                         {{ product.name }}
                         <button class="btn btn-primary ml-auto"
@@ -102,7 +104,13 @@
                 this.axios.post(`shopping-lists/${this.shoppingListId}/add-products`, {
                     productsIds: this.selectedProducts,
                     jobKey: this.jobKey
-                }).then(() => {
+                }).then((response) => {
+                    const alert = {
+                        type: 'success',
+                        message: response.data,
+                        visibility: true
+                    };
+                    this.$store.dispatch('setAlert', alert);
                     this.checkForJobResult();
                     this.selectedProducts = [];
                 });
@@ -131,8 +139,11 @@
                     this.getJobStatus()
                         .then((response) => {
                             if (response.data.jobKey === this.jobKey) {
-                                this.$store.dispatch('getShoppingLists');
                                 clearInterval(interval);
+                                setTimeout(() => {
+                                    this.setAlert(response);
+                                    this.$store.dispatch('getShoppingLists');
+                                }, 3000);
                             }
                             counter++;
                             if (counter === limit) {
@@ -155,6 +166,17 @@
                     return false;
                 }
                 return true;
+            },
+            buildAlertMessage(productsAmount, shoppingListId) {
+                return {
+                    type: 'success',
+                    message: `Added ${productsAmount} product/s to shopping list ${shoppingListId}`,
+                    visibility: true
+                };
+            },
+            setAlert(response) {
+                const message = this.buildAlertMessage(response.data.data.productsAmount, response.data.data.shoppingListId);
+                return this.$store.dispatch('setAlert', message);
             }
         }
     }

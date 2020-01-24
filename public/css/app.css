@@ -11371,3 +11371,10 @@ a.text-dark:focus {
   cursor: pointer;
 }
 
+.toast {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  opacity: 1;
+}
+

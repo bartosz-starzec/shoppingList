@@ -1,6 +1,7 @@
 <template>
     <div class="row justify-content-center mb-5">
         <div class="col-md-8">
+            <alert-component></alert-component>
             <products-component></products-component>
 
             <button class="btn btn-primary mb-3" @click="createShoppingList">
@@ -14,9 +15,10 @@
 <script>
     import ProductsComponent from "./ProductsComponent";
     import ShoppingListsComponent from "./ShoppingLists/ShoppingListsComponent";
+    import AlertComponent from "./AlertComponent";
 
     export default {
-        components: {ShoppingListsComponent, ProductsComponent},
+        components: {AlertComponent, ShoppingListsComponent, ProductsComponent},
         data() {
             return {
                 product: {},

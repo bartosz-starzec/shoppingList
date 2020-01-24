@@ -82,6 +82,7 @@ class ProcessAddToShoppingList implements ShouldQueue
 
         $cacheData = $this->prepareCacheData();
 
+
         return $this->cacheJobResult($cacheData, $this->jobKey);
     }
 
@@ -92,7 +93,7 @@ class ProcessAddToShoppingList implements ShouldQueue
      */
     private function cacheJobResult(array $data, string $jobKey): bool
     {
-        return $this->cacheRepository->add($jobKey, $data, 500);
+        return $this->cacheRepository->add($jobKey, $data, 4000);
     }
 
     /**

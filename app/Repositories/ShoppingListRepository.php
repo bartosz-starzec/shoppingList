@@ -39,7 +39,7 @@ class ShoppingListRepository implements ShoppingListRepositoryInterface
     public function delete(int $id): JsonResponse
     {
         $shoppingList = ShoppingList::find($id);
-        $shoppingList->products()->delete();
+        $shoppingList->products()->detach();
         $shoppingList->delete();
 
         return response()->json('success');
@@ -54,7 +54,7 @@ class ShoppingListRepository implements ShoppingListRepositoryInterface
     {
         $shoppingList = ShoppingList::find($shoppingListId);
 
-        $shoppingList->products()->attach($product);
+        $shoppingList->products()->syncWithoutDetaching($product);
 
         return true;
     }

@@ -1,16 +1,21 @@
 <template>
     <div class="collapse card-body" :id="`collapseShoppingList${id}`">
-        <ul class="list-group">
+        <ul v-if="products.length > 0" class="list-group">
             <li class="list-group-item" v-for="product in products" v-bind:key="product.id">
-                <label :for="`shopping-list${id}-product${product.id}`" class="form-group m-1 w-100 select-product d-flex align-items-center">
-                    <input type="checkbox" class="mr-1" :name="product.id" :id="`shopping-list${id}-product${product.id}`" :value="product.id"
+                <label :for="`shopping-list${id}-product${product.id}`"
+                       class="form-group m-1 w-100 select-product d-flex align-items-center">
+                    <input type="checkbox" class="mr-1" :name="product.id"
+                           :id="`shopping-list${id}-product${product.id}`" :value="product.id"
                            v-model="selectedProducts">
                     {{ product.name }}
 
                 </label>
             </li>
         </ul>
-        <div class="controls mt-3">
+        <div v-else>
+            Shopping list is empty! Select products from the list above and add them here.
+        </div>
+        <div v-if="products.length > 0" class="controls mt-3">
             <button class="btn btn-danger" @click="removeFromShoppingList">
                 Delete products
             </button>
