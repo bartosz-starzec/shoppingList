@@ -10,6 +10,28 @@ use Illuminate\Support\Facades\Redis;
 
 class ShoppingListRepository implements ShoppingListRepositoryInterface
 {
+
+    /**
+     * @var ShoppingList
+     */
+    private $model;
+
+    /**
+     * @var Product
+     */
+    private $productModel;
+
+    /**
+     * ShoppingListRepository constructor.
+     * @param ShoppingList $model
+     * @param Product $productModel
+     */
+    public function __construct(ShoppingList $model, Product $productModel)
+    {
+        $this->model = $model;
+        $this->productModel = $productModel;
+    }
+
     /**
      * @return JsonResponse
      */
@@ -38,7 +60,7 @@ class ShoppingListRepository implements ShoppingListRepositoryInterface
      */
     public function delete(int $id): JsonResponse
     {
-        $shoppingList = ShoppingList::find($id);
+        $shoppingList = $this->model->findOrFail($id);
         $shoppingList->products()->detach();
         $shoppingList->delete();
 
@@ -47,16 +69,14 @@ class ShoppingListRepository implements ShoppingListRepositoryInterface
 
     /**
      * @param int $shoppingListId
-     * @param Product $product
-     * @return bool
+     * @param int $productId
      */
-    public function addProduct(int $shoppingListId, Product $product): bool
+    public function addProduct(int $shoppingListId, int $productId): void
     {
-        $shoppingList = ShoppingList::find($shoppingListId);
+        $shoppingList = $this->model->findOrFail($shoppingListId);
+        $product = $this->productModel->findOrFail($productId);
 
         $shoppingList->products()->syncWithoutDetaching($product);
-
-        return true;
     }
 
     /**
@@ -66,7 +86,7 @@ class ShoppingListRepository implements ShoppingListRepositoryInterface
      */
     public function removeProduct(int $shoppingListId, int $productId): bool
     {
-        $shoppingList = ShoppingList::find($shoppingListId);
+        $shoppingList = $this->model->findOrFail($shoppingListId);
 
         $shoppingList->products()->detach([$productId]);
 

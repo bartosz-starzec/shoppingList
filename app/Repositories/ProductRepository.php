@@ -9,6 +9,21 @@ use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class ProductRepository implements ProductRepositoryInterface
 {
+
+    /**
+     * @var Product
+     */
+    private $model;
+
+    /**
+     * ProductRepository constructor.
+     * @param Product $model
+     */
+    public function __construct(Product $model)
+    {
+        $this->model =$model;
+    }
+
     /**
      * @return ResourceCollection
      */
@@ -42,7 +57,7 @@ class ProductRepository implements ProductRepositoryInterface
      */
     public function delete($id): bool
     {
-        $product = Product::find($id);
+        $product = $this->model->findOrFail($id);
         $product->delete();
 
         return true;
@@ -68,7 +83,7 @@ class ProductRepository implements ProductRepositoryInterface
      */
     public function update(int $id, string $name): JsonResponse
     {
-        $product = Product::find($id);
+        $product = $this->model->findOrFail($id);
         $product->name = $name;
 
         $product->save();

@@ -25,10 +25,10 @@ interface ShoppingListRepositoryInterface
 
     /**
      * @param int $shoppingListId
-     * @param Product $product
-     * @return bool
+     * @param int $productId
+     * @return void
      */
-    public function addProduct(int $shoppingListId, Product $product): bool;
+    public function addProduct(int $shoppingListId, int $productId): void;
 
     /**
      * @param int $shoppingListId

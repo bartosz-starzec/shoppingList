@@ -2,7 +2,6 @@
 
 namespace App\Jobs;
 
-use App\Product;
 use App\Repositories\ShoppingListRepositoryInterface;
 use Illuminate\Bus\Queueable;
 use Illuminate\Cache\Repository as CacheRepository;
@@ -49,7 +48,6 @@ class ProcessAddToShoppingList implements ShouldQueue
     {
         $this->shoppingListId = $shoppingListId;
         $this->productsIds = $productsIds;
-
         $this->jobKey = $jobKey;
     }
 
@@ -74,14 +72,11 @@ class ProcessAddToShoppingList implements ShouldQueue
     private function addProducts(): bool
     {
         foreach ($this->productsIds as $productId) {
-            $product = Product::find($productId);
-            if ($this->shoppingListRepository->addProduct($this->shoppingListId, $product)) {
-                $this->addedProductsCounter++;
-            }
+            $this->shoppingListRepository->addProduct($this->shoppingListId, $productId);
+            $this->addedProductsCounter++;
         }
 
         $cacheData = $this->prepareCacheData();
-
 
         return $this->cacheJobResult($cacheData, $this->jobKey);
     }
