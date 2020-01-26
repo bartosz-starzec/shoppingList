@@ -9,18 +9,20 @@
     "license": "MIT",
     "require": {
         "php": "^7.2",
+        "ext-json": "*",
+        "ext-pdo": "*",
         "fideloper/proxy": "^4.0",
         "laravel/framework": "^6.2",
-        "laravel/tinker": "^2.0",
-        "ext-json": "*"
+        "laravel/tinker": "^2.0"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.6",
         "codeception/codeception": "^4.0",
-        "codeception/module-asserts": "^1.0.0",
+        "codeception/module-asserts": "^1.1",
         "codeception/module-db": "^1.0",
         "codeception/module-laravel5": "^1.0",
         "codeception/module-phpbrowser": "^1.0.0",
+        "codeception/module-rest": "^1.0",
         "facade/ignition": "^1.4",
         "fzaninotto/faker": "^1.4",
         "laravel/ui": "^1.1",

@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\Products\ProductStore;
+use App\Http\Requests\Products\ProductUpdate;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 use Illuminate\Routing\Controller;
 use App\Repositories\ProductRepositoryInterface;
@@ -35,15 +36,19 @@ class ProductController extends Controller
 
 
     /**
-     * @param Request $request
+     * @param ProductStore $request
      * @return JsonResponse
      */
-    public function store(Request $request)
+    public function store(ProductStore $request): JsonResponse
     {
         return $this->productRepository->save($request->get('name'));
     }
 
-    public function update(Request $request)
+    /**
+     * @param ProductUpdate $request
+     * @return JsonResponse
+     */
+    public function update(ProductUpdate $request): JsonResponse
     {
         return $this->productRepository->update($request->get('id'), $request->get('name'));
     }
@@ -52,7 +57,7 @@ class ProductController extends Controller
      * @param string $ids
      * @return void
      */
-    public function deleteMany(string $ids)
+    public function deleteMany(string $ids): void
     {
         $ids = explode(',', $ids);
         $this->productRepository->deleteMany($ids);

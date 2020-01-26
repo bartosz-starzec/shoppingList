@@ -4,6 +4,10 @@ namespace App\Exceptions;
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
+use Symfony\Component\HttpFoundation\Response;
 
 class Handler extends ExceptionHandler
 {
@@ -29,7 +33,7 @@ class Handler extends ExceptionHandler
     /**
      * Report or log an exception.
      *
-     * @param  \Exception  $exception
+     * @param \Exception $exception
      * @return void
      *
      * @throws \Exception
@@ -40,16 +44,58 @@ class Handler extends ExceptionHandler
     }
 
     /**
+     * @param Exception $exception
+     * @return bool
+     */
+    private function isBadRequestException(Exception $exception): bool
+    {
+        $badRequestExceptions = [
+            NotUniqueException::class,
+        ];
+
+        return in_array(get_class($exception), $badRequestExceptions);
+    }
+
+    /**
      * Render an exception into an HTTP response.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Exception  $exception
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @param Request $request
+     * @param Exception $exception
+     * @return Response
      *
-     * @throws \Exception
+     * @throws Exception
      */
-    public function render($request, Exception $exception)
+    public function render($request, Exception $exception): Response
     {
-        return parent::render($request, $exception);
+        if ($this->isBadRequestException($exception)) {
+            return new JsonResponse('Product with that name already exists!', 400, $this->defaultHeaders());
+        }
+        if ($this->isValidationException($exception)) {
+            return new JsonResponse($exception->validator->getMessageBag()->first(), 400, $this->defaultHeaders());
+        }
+
+        return new JsonResponse('Bad request', 400, $this->defaultHeaders());
+    }
+
+    /**
+     * @return array
+     */
+    protected function defaultHeaders(): array
+    {
+        return [
+            'Access-Control-Allow-Origin' => '*',
+            'Access-Control-Allow-Methods' => 'GET, POST, OPTIONS, PATCH, PUT, DELETE',
+            'Access-Control-Allow-Headers' => 'DNT,X-Mx-ReqToken,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization',
+            'Access-Control-Expose-Headers' => 'Authorization',
+        ];
+    }
+
+    /**
+     * @param Exception $exception
+     * @return bool
+     */
+    private function isValidationException(Exception $exception): bool
+    {
+        return $exception instanceof ValidationException;
     }
 }

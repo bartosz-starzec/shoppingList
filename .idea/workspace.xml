@@ -1,19 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d66b7713-1aa2-47d5-863a-5f02157da467" name="Default Changelist" comment="saving products on shopping list through Laravel Job">
-      <change afterPath="$PROJECT_DIR$/.idea/codeception.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Middleware/AddHeaders.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/_support/DbHelper.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php-test-framework.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php-test-framework.xml" afterDir="false" />
+    <list default="true" id="d66b7713-1aa2-47d5-863a-5f02157da467" name="Default Changelist" comment="tests">
+      <change afterPath="$PROJECT_DIR$/app/Exceptions/NotUniqueException.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Requests/BaseRequest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/acceptance/Api/Products/AddProductCest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/acceptance/Api/Products/DeleteProductCest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/acceptance/Api/Products/UpdateProductCest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shoppingList.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shoppingList.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Kernel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bootstrap/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/bootstrap/app.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Exceptions/Handler.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Exceptions/Handler.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProductController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProductController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/AddHeaders.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/AddHeaders.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/ProductRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/ProductRepository.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Unit/ProcessAddToShoppingListTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/unit/ProcessAddToShoppingListTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/ProductsComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/ProductsComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/acceptance.suite.yml" beforeDir="false" afterPath="$PROJECT_DIR$/tests/acceptance.suite.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/acceptance/FirstCest.php" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,7 +29,7 @@
   <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution>
-      <executable />
+      <executable path="composer" />
     </execution>
   </component>
   <component name="DatabaseView">
@@ -58,7 +64,7 @@
     <other-services-enabled>true</other-services-enabled>
     <auto-save>true</auto-save>
   </component>
-  <component name="PhpDebugGeneral" xdebug_debug_port="9005" />
+  <component name="PhpDebugGeneral" xdebug_debug_port="9005" xdebug_force_break_when_no_path_mapping="false" xdebug_force_break_when_outside_project="false" />
   <component name="PhpServers">
     <servers>
       <server host="127.0.0.1" id="8a1b84b0-4ccc-400f-927d-13471e356214" name="127.0.0.1" port="8000" />
@@ -179,6 +185,10 @@
       <path value="$PROJECT_DIR$/vendor/symfony/yaml" />
       <path value="$PROJECT_DIR$/vendor/symfony/browser-kit" />
       <path value="$PROJECT_DIR$/vendor/psr/http-message" />
+      <path value="$PROJECT_DIR$/vendor/codeception/module-laravel5" />
+      <path value="$PROJECT_DIR$/vendor/codeception/module-db" />
+      <path value="$PROJECT_DIR$/vendor/codeception/module-rest" />
+      <path value="$PROJECT_DIR$/vendor/flow/jsonpath" />
     </include_path>
   </component>
   <component name="ProjectId" id="1VvaETkjYwhjMbRVQqYKLOn7JZv" />
@@ -195,7 +205,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/tests/_support" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/tests/acceptance/Products" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
@@ -204,18 +214,33 @@
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/tests/_support" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/tests/acceptance/Api" />
+      <recent name="$PROJECT_DIR$/app/Http/Requests/Products" />
+      <recent name="$PROJECT_DIR$/tests/acceptance/Products" />
       <recent name="$PROJECT_DIR$/tests/unit" />
       <recent name="$PROJECT_DIR$/resources/js/components/ShoppingLists/ShoppingList" />
-      <recent name="$PROJECT_DIR$/resources/js/components/ShoppingLists" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/tests/acceptance/Products" />
+      <recent name="$PROJECT_DIR$/tests/_support" />
     </key>
   </component>
-  <component name="RunManager" selected="PHPUnit.ProcessAddToShoppingListTest">
-    <configuration name="FirstCest.php" type="CodeceptionConfigurationType" factoryName="Codeception" temporary="true">
-      <PhpTestRunnerSettings file="$PROJECT_DIR$/tests/acceptance/FirstCest.php" scope="File" />
+  <component name="RunManager" selected="Codeception.DeleteProductCest.php">
+    <configuration name="AddProductCest.php" type="CodeceptionConfigurationType" factoryName="Codeception" temporary="true">
+      <PhpTestRunnerSettings file="$PROJECT_DIR$/tests/acceptance/Api/Products/AddProductCest.php" scope="File" />
+      <method v="2" />
+    </configuration>
+    <configuration name="DeleteProductCest.php" type="CodeceptionConfigurationType" factoryName="Codeception" temporary="true">
+      <PhpTestRunnerSettings file="$PROJECT_DIR$/tests/acceptance/Api/Products/DeleteProductCest.php" scope="File" />
+      <method v="2" />
+    </configuration>
+    <configuration name="DeleteProductCest.php::tryToDeleteProducts" type="CodeceptionConfigurationType" factoryName="Codeception" temporary="true">
+      <PhpTestRunnerSettings file="$PROJECT_DIR$/tests/acceptance/Api/Products/DeleteProductCest.php" method="tryToDeleteProducts" scope="Method" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Products" type="CodeceptionConfigurationType" factoryName="Codeception" temporary="true">
+      <PhpTestRunnerSettings directory="$PROJECT_DIR$/tests/acceptance/Api/Products" />
       <method v="2" />
     </configuration>
     <configuration name="codeception.yml" type="CodeceptionConfigurationType" factoryName="Codeception">
@@ -232,8 +257,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Codeception.DeleteProductCest.php" />
+        <item itemvalue="Codeception.Products" />
+        <item itemvalue="Codeception.DeleteProductCest.php::tryToDeleteProducts" />
+        <item itemvalue="Codeception.AddProductCest.php" />
         <item itemvalue="PHPUnit.ProcessAddToShoppingListTest" />
-        <item itemvalue="Codeception.FirstCest.php" />
       </list>
     </recent_temporary>
   </component>
@@ -250,7 +278,7 @@
     </option>
   </component>
   <component name="SvnConfiguration">
-    <configuration />
+    <configuration>$USER_HOME$/.subversion</configuration>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -271,7 +299,9 @@
       <workItem from="1579434852112" duration="10272000" />
       <workItem from="1579718035430" duration="5839000" />
       <workItem from="1579883318002" duration="5972000" />
-      <workItem from="1580045198042" duration="2349000" />
+      <workItem from="1580045198042" duration="7677000" />
+      <workItem from="1580052900488" duration="505000" />
+      <workItem from="1580053431299" duration="3353000" />
     </task>
     <task id="LOCAL-00001" summary="creating shoppingLists, adding products to shoppingLists and displaying them">
       <created>1578742066662</created>
@@ -322,7 +352,14 @@
       <option name="project" value="LOCAL" />
       <updated>1579954213671</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="tests">
+      <created>1580047616620</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1580047616620</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -337,13 +374,26 @@
     <MESSAGE value="editing products" />
     <MESSAGE value="saving products on shopping list through Laravel Job" />
     <MESSAGE value="improvement in repositories and first test" />
-    <option name="LAST_COMMIT_MESSAGE" value="improvement in repositories and first test" />
+    <MESSAGE value="tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="tests" />
   </component>
   <component name="WindowStateProjectService">
     <state x="3468" y="199" width="824" height="691" key="#CLI_Interpreters" timestamp="1578158280262">
       <screen x="3046" y="0" width="1680" height="1050" />
     </state>
     <state x="3468" y="199" width="824" height="691" key="#CLI_Interpreters/3046.0.1680.1050/0.27.1366.741/1366.0.1680.1050@3046.0.1680.1050" timestamp="1578158280262" />
+    <state x="3481" y="200" width="800" height="684" key="#Notifications" timestamp="1580053452598">
+      <screen x="3046" y="0" width="1680" height="1050" />
+    </state>
+    <state x="3481" y="200" width="800" height="684" key="#Notifications/3046.0.1680.1050/1366.158.1680.1050/0.119.1366.768@3046.0.1680.1050" timestamp="1580053452598" />
+    <state x="3468" y="199" width="824" height="691" key="#PHP_CS_Fixer" timestamp="1580053246758">
+      <screen x="3046" y="0" width="1680" height="1050" />
+    </state>
+    <state x="3468" y="199" width="824" height="691" key="#PHP_CS_Fixer/3046.0.1680.1050/1366.158.1680.1050/0.119.1366.768@3046.0.1680.1050" timestamp="1580053246758" />
+    <state x="3146" y="127" width="1480" height="823" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog" timestamp="1580050191294">
+      <screen x="3046" y="0" width="1680" height="1050" />
+    </state>
+    <state x="3146" y="127" width="1480" height="823" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog/3046.0.1680.1050/1366.158.1680.1050/0.119.1366.768@3046.0.1680.1050" timestamp="1580050191294" />
     <state x="3481" y="200" width="800" height="684" key="#com.intellij.ide.actionMacro.EditMacrosDialog" timestamp="1578150171193">
       <screen x="3046" y="0" width="1680" height="1050" />
     </state>
@@ -352,25 +402,30 @@
       <screen x="3046" y="0" width="1680" height="1050" />
     </state>
     <state x="3681" y="226" width="400" height="638" key="#com.intellij.ide.util.MemberChooser/3046.0.1680.1050/0.27.1366.741/1366.0.1680.1050@3046.0.1680.1050" timestamp="1578735253515" />
-    <state x="3772" y="27" width="944" height="1023" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1579441713160">
+    <state x="3772" y="27" width="476" height="839" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1580048019571">
       <screen x="3046" y="0" width="1680" height="1050" />
     </state>
     <state x="3772" y="27" width="944" height="1023" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/3046.0.1680.1050/0.27.1366.741/1366.0.1680.1050@3046.0.1680.1050" timestamp="1579441713160" />
-    <state x="3619" y="296" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1579720060728">
+    <state x="3772" y="27" width="476" height="839" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/3046.0.1680.1050/1366.158.1680.1050/0.119.1366.768@3046.0.1680.1050" timestamp="1580048019571" />
+    <state x="3619" y="296" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1580051732440">
       <screen x="3046" y="0" width="1680" height="1050" />
     </state>
     <state x="3619" y="296" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/3046.0.1680.1050/0.27.1366.741/1366.0.1680.1050@3046.0.1680.1050" timestamp="1579441752353" />
-    <state x="3619" y="296" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/3046.0.1680.1050/1366.158.1680.1050/0.119.1366.768@3046.0.1680.1050" timestamp="1579720060728" />
+    <state x="3619" y="296" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/3046.0.1680.1050/1366.158.1680.1050/0.119.1366.768@3046.0.1680.1050" timestamp="1580051732440" />
     <state x="3779" y="294" width="429" height="495" key="#xdebugger.XInspectDialog" timestamp="1578841273777">
       <screen x="3046" y="0" width="1680" height="1050" />
     </state>
     <state x="3779" y="294" width="429" height="495" key="#xdebugger.XInspectDialog/3046.0.1680.1050/0.27.1366.741/1366.0.1680.1050@3046.0.1680.1050" timestamp="1578841273777" />
-    <state x="3290" y="63" width="859" height="812" key="CommitChangelistDialog2" timestamp="1580047599859">
+    <state x="3290" y="63" width="859" height="812" key="CommitChangelistDialog2" timestamp="1580056672428">
       <screen x="3046" y="0" width="1680" height="1050" />
     </state>
     <state x="344" y="123" key="CommitChangelistDialog2/0.27.1366.741@0.27.1366.741" timestamp="1578928630029" />
     <state x="3290" y="63" width="1255" height="885" key="CommitChangelistDialog2/3046.0.1680.1050/0.27.1366.741/1366.0.1680.1050@3046.0.1680.1050" timestamp="1579444715168" />
-    <state x="3290" y="63" width="859" height="812" key="CommitChangelistDialog2/3046.0.1680.1050/1366.158.1680.1050/0.119.1366.768@3046.0.1680.1050" timestamp="1580047599859" />
+    <state x="3290" y="63" width="859" height="812" key="CommitChangelistDialog2/3046.0.1680.1050/1366.158.1680.1050/0.119.1366.768@3046.0.1680.1050" timestamp="1580056672428" />
+    <state x="3646" y="454" width="469" height="175" key="ComposerInitDialogKey" timestamp="1580052195573">
+      <screen x="3046" y="0" width="1680" height="1050" />
+    </state>
+    <state x="3646" y="454" width="469" height="175" key="ComposerInitDialogKey/3046.0.1680.1050/1366.158.1680.1050/0.119.1366.768@3046.0.1680.1050" timestamp="1580052195573" />
     <state x="3204" y="107" width="1344" height="877" key="DiffContextDialog" timestamp="1580047557634">
       <screen x="3046" y="0" width="1680" height="1050" />
     </state>
@@ -381,87 +436,95 @@
     </state>
     <state x="3669" y="296" width="424" height="491" key="FileChooserDialogImpl/3046.0.1680.1050/0.27.1366.741/1366.0.1680.1050@3046.0.1680.1050" timestamp="1579448472323" />
     <state x="3669" y="296" key="FileChooserDialogImpl/3046.0.1680.1050/1366.158.1680.1050/0.119.1366.768@3046.0.1680.1050" timestamp="1579719975057" />
-    <state width="1636" height="200" key="GridCell.Tab.0.bottom" timestamp="1580047526285">
+    <state width="1638" height="321" key="GridCell.Tab.0.bottom" timestamp="1580056445537">
       <screen x="3046" y="0" width="1680" height="1050" />
     </state>
     <state width="1636" height="267" key="GridCell.Tab.0.bottom/3046.0.1680.1050/0.27.1366.741/1366.0.1680.1050@3046.0.1680.1050" timestamp="1579448473709" />
-    <state width="1636" height="200" key="GridCell.Tab.0.bottom/3046.0.1680.1050/1366.158.1680.1050/0.119.1366.768@3046.0.1680.1050" timestamp="1580047526285" />
-    <state width="1636" height="200" key="GridCell.Tab.0.center" timestamp="1580047526285">
+    <state width="1638" height="321" key="GridCell.Tab.0.bottom/3046.0.1680.1050/1366.158.1680.1050/0.119.1366.768@3046.0.1680.1050" timestamp="1580056445537" />
+    <state width="1638" height="321" key="GridCell.Tab.0.center" timestamp="1580056445537">
       <screen x="3046" y="0" width="1680" height="1050" />
     </state>
     <state width="1636" height="267" key="GridCell.Tab.0.center/3046.0.1680.1050/0.27.1366.741/1366.0.1680.1050@3046.0.1680.1050" timestamp="1579448473709" />
-    <state width="1636" height="200" key="GridCell.Tab.0.center/3046.0.1680.1050/1366.158.1680.1050/0.119.1366.768@3046.0.1680.1050" timestamp="1580047526285" />
-    <state width="1636" height="200" key="GridCell.Tab.0.left" timestamp="1580047526285">
+    <state width="1638" height="321" key="GridCell.Tab.0.center/3046.0.1680.1050/1366.158.1680.1050/0.119.1366.768@3046.0.1680.1050" timestamp="1580056445537" />
+    <state width="1638" height="321" key="GridCell.Tab.0.left" timestamp="1580056445537">
       <screen x="3046" y="0" width="1680" height="1050" />
     </state>
     <state width="1636" height="267" key="GridCell.Tab.0.left/3046.0.1680.1050/0.27.1366.741/1366.0.1680.1050@3046.0.1680.1050" timestamp="1579448473709" />
-    <state width="1636" height="200" key="GridCell.Tab.0.left/3046.0.1680.1050/1366.158.1680.1050/0.119.1366.768@3046.0.1680.1050" timestamp="1580047526285" />
-    <state width="1636" height="200" key="GridCell.Tab.0.right" timestamp="1580047526285">
+    <state width="1638" height="321" key="GridCell.Tab.0.left/3046.0.1680.1050/1366.158.1680.1050/0.119.1366.768@3046.0.1680.1050" timestamp="1580056445537" />
+    <state width="1638" height="321" key="GridCell.Tab.0.right" timestamp="1580056445537">
       <screen x="3046" y="0" width="1680" height="1050" />
     </state>
     <state width="1636" height="267" key="GridCell.Tab.0.right/3046.0.1680.1050/0.27.1366.741/1366.0.1680.1050@3046.0.1680.1050" timestamp="1579448473709" />
-    <state width="1636" height="200" key="GridCell.Tab.0.right/3046.0.1680.1050/1366.158.1680.1050/0.119.1366.768@3046.0.1680.1050" timestamp="1580047526285" />
-    <state width="1636" height="383" key="GridCell.Tab.1.bottom" timestamp="1579954223955">
+    <state width="1638" height="321" key="GridCell.Tab.0.right/3046.0.1680.1050/1366.158.1680.1050/0.119.1366.768@3046.0.1680.1050" timestamp="1580056445537" />
+    <state width="1638" height="376" key="GridCell.Tab.1.bottom" timestamp="1580056445465">
       <screen x="3046" y="0" width="1680" height="1050" />
     </state>
     <state width="1636" height="334" key="GridCell.Tab.1.bottom/3046.0.1680.1050/0.27.1366.741/1366.0.1680.1050@3046.0.1680.1050" timestamp="1579448473704" />
-    <state width="1636" height="383" key="GridCell.Tab.1.bottom/3046.0.1680.1050/1366.158.1680.1050/0.119.1366.768@3046.0.1680.1050" timestamp="1579954223955" />
-    <state width="1636" height="383" key="GridCell.Tab.1.center" timestamp="1579954223955">
+    <state width="1638" height="376" key="GridCell.Tab.1.bottom/3046.0.1680.1050/1366.158.1680.1050/0.119.1366.768@3046.0.1680.1050" timestamp="1580056445465" />
+    <state width="1638" height="376" key="GridCell.Tab.1.center" timestamp="1580056445465">
       <screen x="3046" y="0" width="1680" height="1050" />
     </state>
     <state width="1636" height="334" key="GridCell.Tab.1.center/3046.0.1680.1050/0.27.1366.741/1366.0.1680.1050@3046.0.1680.1050" timestamp="1579448473704" />
-    <state width="1636" height="383" key="GridCell.Tab.1.center/3046.0.1680.1050/1366.158.1680.1050/0.119.1366.768@3046.0.1680.1050" timestamp="1579954223955" />
-    <state width="1636" height="383" key="GridCell.Tab.1.left" timestamp="1579954223955">
+    <state width="1638" height="376" key="GridCell.Tab.1.center/3046.0.1680.1050/1366.158.1680.1050/0.119.1366.768@3046.0.1680.1050" timestamp="1580056445465" />
+    <state width="1638" height="376" key="GridCell.Tab.1.left" timestamp="1580056445465">
       <screen x="3046" y="0" width="1680" height="1050" />
     </state>
     <state width="1636" height="334" key="GridCell.Tab.1.left/3046.0.1680.1050/0.27.1366.741/1366.0.1680.1050@3046.0.1680.1050" timestamp="1579448473704" />
-    <state width="1636" height="383" key="GridCell.Tab.1.left/3046.0.1680.1050/1366.158.1680.1050/0.119.1366.768@3046.0.1680.1050" timestamp="1579954223955" />
-    <state width="1636" height="383" key="GridCell.Tab.1.right" timestamp="1579954223955">
+    <state width="1638" height="376" key="GridCell.Tab.1.left/3046.0.1680.1050/1366.158.1680.1050/0.119.1366.768@3046.0.1680.1050" timestamp="1580056445465" />
+    <state width="1638" height="376" key="GridCell.Tab.1.right" timestamp="1580056445465">
       <screen x="3046" y="0" width="1680" height="1050" />
     </state>
     <state width="1636" height="334" key="GridCell.Tab.1.right/3046.0.1680.1050/0.27.1366.741/1366.0.1680.1050@3046.0.1680.1050" timestamp="1579448473704" />
-    <state width="1636" height="383" key="GridCell.Tab.1.right/3046.0.1680.1050/1366.158.1680.1050/0.119.1366.768@3046.0.1680.1050" timestamp="1579954223955" />
-    <state width="1636" height="383" key="GridCell.Tab.2.bottom" timestamp="1579954223955">
+    <state width="1638" height="376" key="GridCell.Tab.1.right/3046.0.1680.1050/1366.158.1680.1050/0.119.1366.768@3046.0.1680.1050" timestamp="1580056445465" />
+    <state width="1638" height="376" key="GridCell.Tab.2.bottom" timestamp="1580056445465">
       <screen x="3046" y="0" width="1680" height="1050" />
     </state>
     <state width="1636" height="334" key="GridCell.Tab.2.bottom/3046.0.1680.1050/0.27.1366.741/1366.0.1680.1050@3046.0.1680.1050" timestamp="1579448473704" />
-    <state width="1636" height="383" key="GridCell.Tab.2.bottom/3046.0.1680.1050/1366.158.1680.1050/0.119.1366.768@3046.0.1680.1050" timestamp="1579954223955" />
-    <state width="1636" height="383" key="GridCell.Tab.2.center" timestamp="1579954223955">
+    <state width="1638" height="376" key="GridCell.Tab.2.bottom/3046.0.1680.1050/1366.158.1680.1050/0.119.1366.768@3046.0.1680.1050" timestamp="1580056445465" />
+    <state width="1638" height="376" key="GridCell.Tab.2.center" timestamp="1580056445465">
       <screen x="3046" y="0" width="1680" height="1050" />
     </state>
     <state width="1636" height="334" key="GridCell.Tab.2.center/3046.0.1680.1050/0.27.1366.741/1366.0.1680.1050@3046.0.1680.1050" timestamp="1579448473704" />
-    <state width="1636" height="383" key="GridCell.Tab.2.center/3046.0.1680.1050/1366.158.1680.1050/0.119.1366.768@3046.0.1680.1050" timestamp="1579954223955" />
-    <state width="1636" height="383" key="GridCell.Tab.2.left" timestamp="1579954223955">
+    <state width="1638" height="376" key="GridCell.Tab.2.center/3046.0.1680.1050/1366.158.1680.1050/0.119.1366.768@3046.0.1680.1050" timestamp="1580056445465" />
+    <state width="1638" height="376" key="GridCell.Tab.2.left" timestamp="1580056445465">
       <screen x="3046" y="0" width="1680" height="1050" />
     </state>
     <state width="1636" height="334" key="GridCell.Tab.2.left/3046.0.1680.1050/0.27.1366.741/1366.0.1680.1050@3046.0.1680.1050" timestamp="1579448473704" />
-    <state width="1636" height="383" key="GridCell.Tab.2.left/3046.0.1680.1050/1366.158.1680.1050/0.119.1366.768@3046.0.1680.1050" timestamp="1579954223955" />
-    <state width="1636" height="383" key="GridCell.Tab.2.right" timestamp="1579954223955">
+    <state width="1638" height="376" key="GridCell.Tab.2.left/3046.0.1680.1050/1366.158.1680.1050/0.119.1366.768@3046.0.1680.1050" timestamp="1580056445465" />
+    <state width="1638" height="376" key="GridCell.Tab.2.right" timestamp="1580056445465">
       <screen x="3046" y="0" width="1680" height="1050" />
     </state>
     <state width="1636" height="334" key="GridCell.Tab.2.right/3046.0.1680.1050/0.27.1366.741/1366.0.1680.1050@3046.0.1680.1050" timestamp="1579448473704" />
-    <state width="1636" height="383" key="GridCell.Tab.2.right/3046.0.1680.1050/1366.158.1680.1050/0.119.1366.768@3046.0.1680.1050" timestamp="1579954223955" />
-    <state x="3613" y="356" width="564" height="393" key="NewPhpClassDialog" timestamp="1580047163547">
+    <state width="1638" height="376" key="GridCell.Tab.2.right/3046.0.1680.1050/1366.158.1680.1050/0.119.1366.768@3046.0.1680.1050" timestamp="1580056445465" />
+    <state x="3613" y="356" width="564" height="393" key="NewPhpClassDialog" timestamp="1580054287599">
       <screen x="3046" y="0" width="1680" height="1050" />
     </state>
     <state x="3613" y="356" width="536" height="393" key="NewPhpClassDialog/3046.0.1680.1050/0.27.1366.741/1366.0.1680.1050@3046.0.1680.1050" timestamp="1579440476538" />
-    <state x="3613" y="356" width="564" height="393" key="NewPhpClassDialog/3046.0.1680.1050/1366.158.1680.1050/0.119.1366.768@3046.0.1680.1050" timestamp="1580047163547" />
-    <state x="3382" y="173" width="1007" height="737" key="SettingsEditor" timestamp="1580045681794">
+    <state x="3613" y="356" width="564" height="393" key="NewPhpClassDialog/3046.0.1680.1050/1366.158.1680.1050/0.119.1366.768@3046.0.1680.1050" timestamp="1580054287599" />
+    <state x="3704" y="465" width="354" height="154" key="NewPhpFileDialog" timestamp="1580050680800">
+      <screen x="3046" y="0" width="1680" height="1050" />
+    </state>
+    <state x="3704" y="465" width="354" height="154" key="NewPhpFileDialog/3046.0.1680.1050/1366.158.1680.1050/0.119.1366.768@3046.0.1680.1050" timestamp="1580050680800" />
+    <state x="3621" y="347" width="537" height="397" key="PHPComposerAddDependencyDialogDimensionKey" timestamp="1580052510752">
+      <screen x="3046" y="0" width="1680" height="1050" />
+    </state>
+    <state x="3621" y="347" width="537" height="397" key="PHPComposerAddDependencyDialogDimensionKey/3046.0.1680.1050/1366.158.1680.1050/0.119.1366.768@3046.0.1680.1050" timestamp="1580052510752" />
+    <state x="3382" y="173" width="1007" height="737" key="SettingsEditor" timestamp="1580056784089">
       <screen x="3046" y="0" width="1680" height="1050" />
     </state>
     <state x="3382" y="173" width="1007" height="737" key="SettingsEditor/3046.0.1680.1050/0.27.1366.741/1366.0.1680.1050@3046.0.1680.1050" timestamp="1578320784110" />
-    <state x="3382" y="173" width="1007" height="737" key="SettingsEditor/3046.0.1680.1050/1366.158.1680.1050/0.119.1366.768@3046.0.1680.1050" timestamp="1580045681794" />
-    <state width="647" height="445" key="SwitcherDM" timestamp="1579884953054">
+    <state x="3382" y="173" width="1007" height="737" key="SettingsEditor/3046.0.1680.1050/1366.158.1680.1050/0.119.1366.768@3046.0.1680.1050" timestamp="1580056784089" />
+    <state width="647" height="445" key="SwitcherDM" timestamp="1580054648597">
       <screen x="3046" y="0" width="1680" height="1050" />
     </state>
     <state width="647" height="445" key="SwitcherDM/3046.0.1680.1050/0.27.1366.741/1366.0.1680.1050@3046.0.1680.1050" timestamp="1579440820128" />
-    <state width="647" height="445" key="SwitcherDM/3046.0.1680.1050/1366.158.1680.1050/0.119.1366.768@3046.0.1680.1050" timestamp="1579884953054" />
-    <state x="3481" y="274" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1579954217258">
+    <state width="647" height="445" key="SwitcherDM/3046.0.1680.1050/1366.158.1680.1050/0.119.1366.768@3046.0.1680.1050" timestamp="1580054648597" />
+    <state x="3481" y="274" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1580047618728">
       <screen x="3046" y="0" width="1680" height="1050" />
     </state>
     <state x="354" y="220" key="Vcs.Push.Dialog.v2/0.27.1366.741@0.27.1366.741" timestamp="1578928636782" />
     <state x="3481" y="274" width="800" height="535" key="Vcs.Push.Dialog.v2/3046.0.1680.1050/0.27.1366.741/1366.0.1680.1050@3046.0.1680.1050" timestamp="1579444717590" />
-    <state x="3481" y="274" key="Vcs.Push.Dialog.v2/3046.0.1680.1050/1366.158.1680.1050/0.119.1366.768@3046.0.1680.1050" timestamp="1579954217258" />
+    <state x="3481" y="274" width="800" height="535" key="Vcs.Push.Dialog.v2/3046.0.1680.1050/1366.158.1680.1050/0.119.1366.768@3046.0.1680.1050" timestamp="1580047618728" />
     <state x="3146" y="127" width="1480" height="823" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog" timestamp="1578838307057">
       <screen x="3046" y="0" width="1680" height="1050" />
     </state>
@@ -474,15 +537,19 @@
       <screen x="3046" y="0" width="1680" height="1050" />
     </state>
     <state x="3669" y="458" width="434" height="167" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/3046.0.1680.1050/1366.158.1680.1050/0.119.1366.768@3046.0.1680.1050" timestamp="1579719750090" />
+    <state x="3405" y="277" width="952" height="529" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1580051465644">
+      <screen x="3046" y="0" width="1680" height="1050" />
+    </state>
+    <state x="3405" y="277" width="952" height="529" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/3046.0.1680.1050/1366.158.1680.1050/0.119.1366.768@3046.0.1680.1050" timestamp="1580051465644" />
     <state x="1366" y="0" width="1301" height="982" maximized="true" key="dock-window-1" timestamp="1578842516885">
       <screen x="1366" y="0" width="1680" height="1050" />
     </state>
     <state x="1366" y="0" width="1301" height="982" maximized="true" key="dock-window-1/3046.0.1680.1050/0.27.1366.741/1366.0.1680.1050@3046.0.1680.1050" timestamp="1578842516885" />
-    <state x="3552" y="142" width="668" height="792" key="find.popup" timestamp="1580046642504">
+    <state x="3552" y="142" width="668" height="792" key="find.popup" timestamp="1580051577679">
       <screen x="3046" y="0" width="1680" height="1050" />
     </state>
     <state x="3552" y="142" width="668" height="792" key="find.popup/3046.0.1680.1050/0.27.1366.741/1366.0.1680.1050@3046.0.1680.1050" timestamp="1578842252247" />
-    <state x="3552" y="142" width="668" height="792" key="find.popup/3046.0.1680.1050/1366.158.1680.1050/0.119.1366.768@3046.0.1680.1050" timestamp="1580046642504" />
+    <state x="3552" y="142" width="668" height="792" key="find.popup/3046.0.1680.1050/1366.158.1680.1050/0.119.1366.768@3046.0.1680.1050" timestamp="1580051577679" />
     <state x="3550" y="244" key="run.anything.popup" timestamp="1579886914534">
       <screen x="3046" y="0" width="1680" height="1050" />
     </state>
@@ -492,22 +559,6 @@
     </state>
     <state x="409" y="204" width="672" height="479" key="search.everywhere.popup/0.27.1366.741@0.27.1366.741" timestamp="1578928356434" />
     <state x="3549" y="251" width="672" height="678" key="search.everywhere.popup/3046.0.1680.1050/0.27.1366.741/1366.0.1680.1050@3046.0.1680.1050" timestamp="1579353141396" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/app/Jobs/ProcessRemoveFromShoppingList.php</url>
-          <line>72</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/app/Repositories/ProductRepository.php</url>
-          <line>26</line>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/shoppingList@phpunit_xml.xml" NAME="phpunit.xml Coverage Results" MODIFIED="1579443647263" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="PhpCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

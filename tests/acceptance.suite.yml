@@ -11,12 +11,17 @@ modules:
             url: http://localhost:8000/
         - \Helper\Acceptance
         - Db
+        - REST
         - DbHelper
+        - Asserts
         - Laravel5:
             part: ORM
             environment_file: .env
     step_decorators: ~
     config:
+      REST:
+        url: http://localhost:8000/api/
+        depends: PhpBrowser
       Db:
         dsn: 'mysql:host=localhost;dbname=head'
         user: 'root'

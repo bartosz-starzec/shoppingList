@@ -119,6 +119,7 @@
                 if (confirm('Are you sure?')) {
                     this.axios.delete(`products/delete/${this.selectedProducts.toString()}`).then(() => {
                         this.getProducts();
+                        this.selectedProducts = [];
                     });
                 }
             },

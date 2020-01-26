@@ -2,8 +2,8 @@
 
 namespace App\Repositories;
 
+use App\Exceptions\NotUniqueException;
 use App\Product;
-use App\Repositories\ProductRepositoryInterface;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
@@ -36,6 +36,7 @@ class ProductRepository implements ProductRepositoryInterface
      *
      * @param string $name
      * @return JsonResponse
+     * @throws NotUniqueException
      */
     public function save(string $name): JsonResponse
     {
@@ -45,7 +46,10 @@ class ProductRepository implements ProductRepositoryInterface
 
         try {
             $product->save();
-        } catch (\Exception $exception) {
+        } catch (\PDOException $exception) {
+            if ($exception->getCode() === '23000') {
+                throw new NotUniqueException('Product with that name already exists!', $exception->getCode());
+            }
         }
 
         return response()->json('success');
