@@ -37,8 +37,6 @@ class ProcessAddToShoppingListTest extends TestCase
 
         $this->shoppingListRepository->shouldReceive('addProduct')->andThrow(ModelNotFoundException::class);
         $processAddToShoppingList = new ProcessAddToShoppingList($shoppingListId, $productsIds,$jobKey);
-        $result = $processAddToShoppingList->handle($this->shoppingListRepository, $this->cacheRepository);
-
-        $this->assertTrue($result);
+        $processAddToShoppingList->handle($this->shoppingListRepository, $this->cacheRepository);
     }
 }

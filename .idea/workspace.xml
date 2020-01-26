@@ -9,9 +9,11 @@
       <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/shoppingList.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shoppingList.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Kernel.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bootstrap/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/bootstrap/app.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Unit/ProcessAddToShoppingListTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/unit/ProcessAddToShoppingListTest.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -206,11 +208,12 @@
       <recent name="$PROJECT_DIR$/tests/_support" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/tests/unit" />
       <recent name="$PROJECT_DIR$/resources/js/components/ShoppingLists/ShoppingList" />
       <recent name="$PROJECT_DIR$/resources/js/components/ShoppingLists" />
     </key>
   </component>
-  <component name="RunManager" selected="Codeception.FirstCest.php">
+  <component name="RunManager" selected="PHPUnit.ProcessAddToShoppingListTest">
     <configuration name="FirstCest.php" type="CodeceptionConfigurationType" factoryName="Codeception" temporary="true">
       <PhpTestRunnerSettings file="$PROJECT_DIR$/tests/acceptance/FirstCest.php" scope="File" />
       <method v="2" />
@@ -219,12 +222,17 @@
       <PhpTestRunnerSettings scope="ConfigurationFile" />
       <method v="2" />
     </configuration>
+    <configuration name="ProcessAddToShoppingListTest" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Unit\ProcessAddToShoppingListTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/unit/ProcessAddToShoppingListTest.php" scope="Class" />
+      <method v="2" />
+    </configuration>
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
       <TestRunner configuration_file="$PROJECT_DIR$/phpunit.xml" scope="XML" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="PHPUnit.ProcessAddToShoppingListTest" />
         <item itemvalue="Codeception.FirstCest.php" />
       </list>
     </recent_temporary>
@@ -263,7 +271,7 @@
       <workItem from="1579434852112" duration="10272000" />
       <workItem from="1579718035430" duration="5839000" />
       <workItem from="1579883318002" duration="5972000" />
-      <workItem from="1580045198042" duration="2055000" />
+      <workItem from="1580045198042" duration="2349000" />
     </task>
     <task id="LOCAL-00001" summary="creating shoppingLists, adding products to shoppingLists and displaying them">
       <created>1578742066662</created>
@@ -357,41 +365,42 @@
       <screen x="3046" y="0" width="1680" height="1050" />
     </state>
     <state x="3779" y="294" width="429" height="495" key="#xdebugger.XInspectDialog/3046.0.1680.1050/0.27.1366.741/1366.0.1680.1050@3046.0.1680.1050" timestamp="1578841273777" />
-    <state x="3290" y="63" width="1255" height="885" key="CommitChangelistDialog2" timestamp="1579888626517">
+    <state x="3290" y="63" width="859" height="812" key="CommitChangelistDialog2" timestamp="1580047599859">
       <screen x="3046" y="0" width="1680" height="1050" />
     </state>
     <state x="344" y="123" key="CommitChangelistDialog2/0.27.1366.741@0.27.1366.741" timestamp="1578928630029" />
     <state x="3290" y="63" width="1255" height="885" key="CommitChangelistDialog2/3046.0.1680.1050/0.27.1366.741/1366.0.1680.1050@3046.0.1680.1050" timestamp="1579444715168" />
-    <state x="3290" y="63" key="CommitChangelistDialog2/3046.0.1680.1050/1366.158.1680.1050/0.119.1366.768@3046.0.1680.1050" timestamp="1579888626517" />
-    <state x="3204" y="107" width="1344" height="877" key="DiffContextDialog" timestamp="1579444672164">
+    <state x="3290" y="63" width="859" height="812" key="CommitChangelistDialog2/3046.0.1680.1050/1366.158.1680.1050/0.119.1366.768@3046.0.1680.1050" timestamp="1580047599859" />
+    <state x="3204" y="107" width="1344" height="877" key="DiffContextDialog" timestamp="1580047557634">
       <screen x="3046" y="0" width="1680" height="1050" />
     </state>
     <state x="3204" y="107" width="1344" height="877" key="DiffContextDialog/3046.0.1680.1050/0.27.1366.741/1366.0.1680.1050@3046.0.1680.1050" timestamp="1579444672164" />
+    <state x="3204" y="107" width="1344" height="877" key="DiffContextDialog/3046.0.1680.1050/1366.158.1680.1050/0.119.1366.768@3046.0.1680.1050" timestamp="1580047557634" />
     <state x="3669" y="296" width="424" height="491" key="FileChooserDialogImpl" timestamp="1579719975057">
       <screen x="3046" y="0" width="1680" height="1050" />
     </state>
     <state x="3669" y="296" width="424" height="491" key="FileChooserDialogImpl/3046.0.1680.1050/0.27.1366.741/1366.0.1680.1050@3046.0.1680.1050" timestamp="1579448472323" />
     <state x="3669" y="296" key="FileChooserDialogImpl/3046.0.1680.1050/1366.158.1680.1050/0.119.1366.768@3046.0.1680.1050" timestamp="1579719975057" />
-    <state width="1636" height="346" key="GridCell.Tab.0.bottom" timestamp="1580047349904">
+    <state width="1636" height="200" key="GridCell.Tab.0.bottom" timestamp="1580047526285">
       <screen x="3046" y="0" width="1680" height="1050" />
     </state>
     <state width="1636" height="267" key="GridCell.Tab.0.bottom/3046.0.1680.1050/0.27.1366.741/1366.0.1680.1050@3046.0.1680.1050" timestamp="1579448473709" />
-    <state width="1636" height="346" key="GridCell.Tab.0.bottom/3046.0.1680.1050/1366.158.1680.1050/0.119.1366.768@3046.0.1680.1050" timestamp="1580047349904" />
-    <state width="1636" height="346" key="GridCell.Tab.0.center" timestamp="1580047349903">
+    <state width="1636" height="200" key="GridCell.Tab.0.bottom/3046.0.1680.1050/1366.158.1680.1050/0.119.1366.768@3046.0.1680.1050" timestamp="1580047526285" />
+    <state width="1636" height="200" key="GridCell.Tab.0.center" timestamp="1580047526285">
       <screen x="3046" y="0" width="1680" height="1050" />
     </state>
     <state width="1636" height="267" key="GridCell.Tab.0.center/3046.0.1680.1050/0.27.1366.741/1366.0.1680.1050@3046.0.1680.1050" timestamp="1579448473709" />
-    <state width="1636" height="346" key="GridCell.Tab.0.center/3046.0.1680.1050/1366.158.1680.1050/0.119.1366.768@3046.0.1680.1050" timestamp="1580047349903" />
-    <state width="1636" height="346" key="GridCell.Tab.0.left" timestamp="1580047349903">
+    <state width="1636" height="200" key="GridCell.Tab.0.center/3046.0.1680.1050/1366.158.1680.1050/0.119.1366.768@3046.0.1680.1050" timestamp="1580047526285" />
+    <state width="1636" height="200" key="GridCell.Tab.0.left" timestamp="1580047526285">
       <screen x="3046" y="0" width="1680" height="1050" />
     </state>
     <state width="1636" height="267" key="GridCell.Tab.0.left/3046.0.1680.1050/0.27.1366.741/1366.0.1680.1050@3046.0.1680.1050" timestamp="1579448473709" />
-    <state width="1636" height="346" key="GridCell.Tab.0.left/3046.0.1680.1050/1366.158.1680.1050/0.119.1366.768@3046.0.1680.1050" timestamp="1580047349903" />
-    <state width="1636" height="346" key="GridCell.Tab.0.right" timestamp="1580047349903">
+    <state width="1636" height="200" key="GridCell.Tab.0.left/3046.0.1680.1050/1366.158.1680.1050/0.119.1366.768@3046.0.1680.1050" timestamp="1580047526285" />
+    <state width="1636" height="200" key="GridCell.Tab.0.right" timestamp="1580047526285">
       <screen x="3046" y="0" width="1680" height="1050" />
     </state>
     <state width="1636" height="267" key="GridCell.Tab.0.right/3046.0.1680.1050/0.27.1366.741/1366.0.1680.1050@3046.0.1680.1050" timestamp="1579448473709" />
-    <state width="1636" height="346" key="GridCell.Tab.0.right/3046.0.1680.1050/1366.158.1680.1050/0.119.1366.768@3046.0.1680.1050" timestamp="1580047349903" />
+    <state width="1636" height="200" key="GridCell.Tab.0.right/3046.0.1680.1050/1366.158.1680.1050/0.119.1366.768@3046.0.1680.1050" timestamp="1580047526285" />
     <state width="1636" height="383" key="GridCell.Tab.1.bottom" timestamp="1579954223955">
       <screen x="3046" y="0" width="1680" height="1050" />
     </state>
