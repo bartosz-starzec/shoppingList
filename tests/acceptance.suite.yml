@@ -1,0 +1,26 @@
+# Codeception Test Suite Configuration
+#
+# Suite for acceptance tests.
+# Perform tests in browser using the WebDriver or PhpBrowser.
+# If you need both WebDriver and PHPBrowser tests - create a separate suite.
+
+actor: AcceptanceTester
+modules:
+    enabled:
+        - PhpBrowser:
+            url: http://localhost:8000/
+        - \Helper\Acceptance
+        - Db
+        - DbHelper
+        - Laravel5:
+            part: ORM
+            environment_file: .env
+    step_decorators: ~
+    config:
+      Db:
+        dsn: 'mysql:host=localhost;dbname=head'
+        user: 'root'
+        password: 'root'
+        populate: false
+        cleanup: false
+

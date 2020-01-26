@@ -2,17 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d66b7713-1aa2-47d5-863a-5f02157da467" name="Default Changelist" comment="saving products on shopping list through Laravel Job">
-      <change afterPath="$PROJECT_DIR$/resources/js/components/AlertComponent.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/codeception.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Middleware/AddHeaders.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/_support/DbHelper.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php-test-framework.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php-test-framework.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shoppingList.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shoppingList.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Jobs/ProcessAddToShoppingList.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Jobs/ProcessAddToShoppingList.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Repositories/ProductRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/ProductRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Repositories/ShoppingListRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/ShoppingListRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_01_04_123700_create_products_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_01_04_123700_create_products_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/FrontPageComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/FrontPageComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/ProductsComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/ProductsComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/ShoppingLists/ShoppingList/ShoppingListComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/ShoppingLists/ShoppingList/ShoppingListComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/store.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sass/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/app.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bootstrap/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/bootstrap/app.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,7 +86,6 @@
       <path value="$PROJECT_DIR$/vendor/phpdocumentor/type-resolver" />
       <path value="$PROJECT_DIR$/vendor/phpdocumentor/reflection-docblock" />
       <path value="$PROJECT_DIR$/vendor/sebastian/exporter" />
-      <path value="$PROJECT_DIR$/vendor/erusev/parsedown" />
       <path value="$PROJECT_DIR$/vendor/sebastian/environment" />
       <path value="$PROJECT_DIR$/vendor/sebastian/comparator" />
       <path value="$PROJECT_DIR$/vendor/phpdocumentor/reflection-common" />
@@ -161,6 +159,24 @@
       <path value="$PROJECT_DIR$/vendor/symfony/filesystem" />
       <path value="$PROJECT_DIR$/vendor/tijsverkoyen/css-to-inline-styles" />
       <path value="$PROJECT_DIR$/vendor/filp/whoops" />
+      <path value="$PROJECT_DIR$/vendor/guzzlehttp/psr7" />
+      <path value="$PROJECT_DIR$/vendor/guzzlehttp/guzzle" />
+      <path value="$PROJECT_DIR$/vendor/guzzlehttp/promises" />
+      <path value="$PROJECT_DIR$/vendor/behat/gherkin" />
+      <path value="$PROJECT_DIR$/vendor/codeception/module-asserts" />
+      <path value="$PROJECT_DIR$/vendor/codeception/codeception" />
+      <path value="$PROJECT_DIR$/vendor/codeception/phpunit-wrapper" />
+      <path value="$PROJECT_DIR$/vendor/codeception/lib-asserts" />
+      <path value="$PROJECT_DIR$/vendor/codeception/module-phpbrowser" />
+      <path value="$PROJECT_DIR$/vendor/codeception/lib-innerbrowser" />
+      <path value="$PROJECT_DIR$/vendor/codeception/stub" />
+      <path value="$PROJECT_DIR$/vendor/ralouphie/getallheaders" />
+      <path value="$PROJECT_DIR$/vendor/league/commonmark" />
+      <path value="$PROJECT_DIR$/vendor/symfony/dom-crawler" />
+      <path value="$PROJECT_DIR$/vendor/league/commonmark-ext-table" />
+      <path value="$PROJECT_DIR$/vendor/symfony/yaml" />
+      <path value="$PROJECT_DIR$/vendor/symfony/browser-kit" />
+      <path value="$PROJECT_DIR$/vendor/psr/http-message" />
     </include_path>
   </component>
   <component name="ProjectId" id="1VvaETkjYwhjMbRVQqYKLOn7JZv" />
@@ -177,25 +193,41 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/Jobs" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/tests/_support" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+    <property name="settings.editor.selected.configurable" value="web-ide.project.structure" />
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/tests/_support" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/resources/js/components/ShoppingLists/ShoppingList" />
       <recent name="$PROJECT_DIR$/resources/js/components/ShoppingLists" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Codeception.FirstCest.php">
+    <configuration name="FirstCest.php" type="CodeceptionConfigurationType" factoryName="Codeception" temporary="true">
+      <PhpTestRunnerSettings file="$PROJECT_DIR$/tests/acceptance/FirstCest.php" scope="File" />
+      <method v="2" />
+    </configuration>
+    <configuration name="codeception.yml" type="CodeceptionConfigurationType" factoryName="Codeception">
+      <PhpTestRunnerSettings scope="ConfigurationFile" />
+      <method v="2" />
+    </configuration>
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
       <TestRunner configuration_file="$PROJECT_DIR$/phpunit.xml" scope="XML" />
       <method v="2" />
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Codeception.FirstCest.php" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="ServiceViewManager">
     <option name="viewStates">
@@ -231,6 +263,7 @@
       <workItem from="1579434852112" duration="10272000" />
       <workItem from="1579718035430" duration="5839000" />
       <workItem from="1579883318002" duration="5972000" />
+      <workItem from="1580045198042" duration="2055000" />
     </task>
     <task id="LOCAL-00001" summary="creating shoppingLists, adding products to shoppingLists and displaying them">
       <created>1578742066662</created>
@@ -274,7 +307,14 @@
       <option name="project" value="LOCAL" />
       <updated>1579444715669</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="improvement in repositories and first test">
+      <created>1579954213671</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1579954213671</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -288,7 +328,8 @@
     <MESSAGE value="getting products &amp; shoppingLists by vuex store" />
     <MESSAGE value="editing products" />
     <MESSAGE value="saving products on shopping list through Laravel Job" />
-    <option name="LAST_COMMIT_MESSAGE" value="saving products on shopping list through Laravel Job" />
+    <MESSAGE value="improvement in repositories and first test" />
+    <option name="LAST_COMMIT_MESSAGE" value="improvement in repositories and first test" />
   </component>
   <component name="WindowStateProjectService">
     <state x="3468" y="199" width="824" height="691" key="#CLI_Interpreters" timestamp="1578158280262">
@@ -331,86 +372,87 @@
     </state>
     <state x="3669" y="296" width="424" height="491" key="FileChooserDialogImpl/3046.0.1680.1050/0.27.1366.741/1366.0.1680.1050@3046.0.1680.1050" timestamp="1579448472323" />
     <state x="3669" y="296" key="FileChooserDialogImpl/3046.0.1680.1050/1366.158.1680.1050/0.119.1366.768@3046.0.1680.1050" timestamp="1579719975057" />
-    <state width="1636" height="383" key="GridCell.Tab.0.bottom" timestamp="1579889217968">
+    <state width="1636" height="346" key="GridCell.Tab.0.bottom" timestamp="1580047349904">
       <screen x="3046" y="0" width="1680" height="1050" />
     </state>
     <state width="1636" height="267" key="GridCell.Tab.0.bottom/3046.0.1680.1050/0.27.1366.741/1366.0.1680.1050@3046.0.1680.1050" timestamp="1579448473709" />
-    <state width="1636" height="383" key="GridCell.Tab.0.bottom/3046.0.1680.1050/1366.158.1680.1050/0.119.1366.768@3046.0.1680.1050" timestamp="1579889217968" />
-    <state width="1636" height="383" key="GridCell.Tab.0.center" timestamp="1579889217968">
+    <state width="1636" height="346" key="GridCell.Tab.0.bottom/3046.0.1680.1050/1366.158.1680.1050/0.119.1366.768@3046.0.1680.1050" timestamp="1580047349904" />
+    <state width="1636" height="346" key="GridCell.Tab.0.center" timestamp="1580047349903">
       <screen x="3046" y="0" width="1680" height="1050" />
     </state>
     <state width="1636" height="267" key="GridCell.Tab.0.center/3046.0.1680.1050/0.27.1366.741/1366.0.1680.1050@3046.0.1680.1050" timestamp="1579448473709" />
-    <state width="1636" height="383" key="GridCell.Tab.0.center/3046.0.1680.1050/1366.158.1680.1050/0.119.1366.768@3046.0.1680.1050" timestamp="1579889217968" />
-    <state width="1636" height="383" key="GridCell.Tab.0.left" timestamp="1579889217967">
+    <state width="1636" height="346" key="GridCell.Tab.0.center/3046.0.1680.1050/1366.158.1680.1050/0.119.1366.768@3046.0.1680.1050" timestamp="1580047349903" />
+    <state width="1636" height="346" key="GridCell.Tab.0.left" timestamp="1580047349903">
       <screen x="3046" y="0" width="1680" height="1050" />
     </state>
     <state width="1636" height="267" key="GridCell.Tab.0.left/3046.0.1680.1050/0.27.1366.741/1366.0.1680.1050@3046.0.1680.1050" timestamp="1579448473709" />
-    <state width="1636" height="383" key="GridCell.Tab.0.left/3046.0.1680.1050/1366.158.1680.1050/0.119.1366.768@3046.0.1680.1050" timestamp="1579889217967" />
-    <state width="1636" height="383" key="GridCell.Tab.0.right" timestamp="1579889217968">
+    <state width="1636" height="346" key="GridCell.Tab.0.left/3046.0.1680.1050/1366.158.1680.1050/0.119.1366.768@3046.0.1680.1050" timestamp="1580047349903" />
+    <state width="1636" height="346" key="GridCell.Tab.0.right" timestamp="1580047349903">
       <screen x="3046" y="0" width="1680" height="1050" />
     </state>
     <state width="1636" height="267" key="GridCell.Tab.0.right/3046.0.1680.1050/0.27.1366.741/1366.0.1680.1050@3046.0.1680.1050" timestamp="1579448473709" />
-    <state width="1636" height="383" key="GridCell.Tab.0.right/3046.0.1680.1050/1366.158.1680.1050/0.119.1366.768@3046.0.1680.1050" timestamp="1579889217968" />
-    <state width="1636" height="383" key="GridCell.Tab.1.bottom" timestamp="1579889217968">
+    <state width="1636" height="346" key="GridCell.Tab.0.right/3046.0.1680.1050/1366.158.1680.1050/0.119.1366.768@3046.0.1680.1050" timestamp="1580047349903" />
+    <state width="1636" height="383" key="GridCell.Tab.1.bottom" timestamp="1579954223955">
       <screen x="3046" y="0" width="1680" height="1050" />
     </state>
     <state width="1636" height="334" key="GridCell.Tab.1.bottom/3046.0.1680.1050/0.27.1366.741/1366.0.1680.1050@3046.0.1680.1050" timestamp="1579448473704" />
-    <state width="1636" height="383" key="GridCell.Tab.1.bottom/3046.0.1680.1050/1366.158.1680.1050/0.119.1366.768@3046.0.1680.1050" timestamp="1579889217968" />
-    <state width="1636" height="383" key="GridCell.Tab.1.center" timestamp="1579889217968">
+    <state width="1636" height="383" key="GridCell.Tab.1.bottom/3046.0.1680.1050/1366.158.1680.1050/0.119.1366.768@3046.0.1680.1050" timestamp="1579954223955" />
+    <state width="1636" height="383" key="GridCell.Tab.1.center" timestamp="1579954223955">
       <screen x="3046" y="0" width="1680" height="1050" />
     </state>
     <state width="1636" height="334" key="GridCell.Tab.1.center/3046.0.1680.1050/0.27.1366.741/1366.0.1680.1050@3046.0.1680.1050" timestamp="1579448473704" />
-    <state width="1636" height="383" key="GridCell.Tab.1.center/3046.0.1680.1050/1366.158.1680.1050/0.119.1366.768@3046.0.1680.1050" timestamp="1579889217968" />
-    <state width="1636" height="383" key="GridCell.Tab.1.left" timestamp="1579889217968">
+    <state width="1636" height="383" key="GridCell.Tab.1.center/3046.0.1680.1050/1366.158.1680.1050/0.119.1366.768@3046.0.1680.1050" timestamp="1579954223955" />
+    <state width="1636" height="383" key="GridCell.Tab.1.left" timestamp="1579954223955">
       <screen x="3046" y="0" width="1680" height="1050" />
     </state>
     <state width="1636" height="334" key="GridCell.Tab.1.left/3046.0.1680.1050/0.27.1366.741/1366.0.1680.1050@3046.0.1680.1050" timestamp="1579448473704" />
-    <state width="1636" height="383" key="GridCell.Tab.1.left/3046.0.1680.1050/1366.158.1680.1050/0.119.1366.768@3046.0.1680.1050" timestamp="1579889217968" />
-    <state width="1636" height="383" key="GridCell.Tab.1.right" timestamp="1579889217968">
+    <state width="1636" height="383" key="GridCell.Tab.1.left/3046.0.1680.1050/1366.158.1680.1050/0.119.1366.768@3046.0.1680.1050" timestamp="1579954223955" />
+    <state width="1636" height="383" key="GridCell.Tab.1.right" timestamp="1579954223955">
       <screen x="3046" y="0" width="1680" height="1050" />
     </state>
     <state width="1636" height="334" key="GridCell.Tab.1.right/3046.0.1680.1050/0.27.1366.741/1366.0.1680.1050@3046.0.1680.1050" timestamp="1579448473704" />
-    <state width="1636" height="383" key="GridCell.Tab.1.right/3046.0.1680.1050/1366.158.1680.1050/0.119.1366.768@3046.0.1680.1050" timestamp="1579889217968" />
-    <state width="1636" height="383" key="GridCell.Tab.2.bottom" timestamp="1579889217968">
+    <state width="1636" height="383" key="GridCell.Tab.1.right/3046.0.1680.1050/1366.158.1680.1050/0.119.1366.768@3046.0.1680.1050" timestamp="1579954223955" />
+    <state width="1636" height="383" key="GridCell.Tab.2.bottom" timestamp="1579954223955">
       <screen x="3046" y="0" width="1680" height="1050" />
     </state>
     <state width="1636" height="334" key="GridCell.Tab.2.bottom/3046.0.1680.1050/0.27.1366.741/1366.0.1680.1050@3046.0.1680.1050" timestamp="1579448473704" />
-    <state width="1636" height="383" key="GridCell.Tab.2.bottom/3046.0.1680.1050/1366.158.1680.1050/0.119.1366.768@3046.0.1680.1050" timestamp="1579889217968" />
-    <state width="1636" height="383" key="GridCell.Tab.2.center" timestamp="1579889217968">
+    <state width="1636" height="383" key="GridCell.Tab.2.bottom/3046.0.1680.1050/1366.158.1680.1050/0.119.1366.768@3046.0.1680.1050" timestamp="1579954223955" />
+    <state width="1636" height="383" key="GridCell.Tab.2.center" timestamp="1579954223955">
       <screen x="3046" y="0" width="1680" height="1050" />
     </state>
     <state width="1636" height="334" key="GridCell.Tab.2.center/3046.0.1680.1050/0.27.1366.741/1366.0.1680.1050@3046.0.1680.1050" timestamp="1579448473704" />
-    <state width="1636" height="383" key="GridCell.Tab.2.center/3046.0.1680.1050/1366.158.1680.1050/0.119.1366.768@3046.0.1680.1050" timestamp="1579889217968" />
-    <state width="1636" height="383" key="GridCell.Tab.2.left" timestamp="1579889217968">
+    <state width="1636" height="383" key="GridCell.Tab.2.center/3046.0.1680.1050/1366.158.1680.1050/0.119.1366.768@3046.0.1680.1050" timestamp="1579954223955" />
+    <state width="1636" height="383" key="GridCell.Tab.2.left" timestamp="1579954223955">
       <screen x="3046" y="0" width="1680" height="1050" />
     </state>
     <state width="1636" height="334" key="GridCell.Tab.2.left/3046.0.1680.1050/0.27.1366.741/1366.0.1680.1050@3046.0.1680.1050" timestamp="1579448473704" />
-    <state width="1636" height="383" key="GridCell.Tab.2.left/3046.0.1680.1050/1366.158.1680.1050/0.119.1366.768@3046.0.1680.1050" timestamp="1579889217968" />
-    <state width="1636" height="383" key="GridCell.Tab.2.right" timestamp="1579889217968">
+    <state width="1636" height="383" key="GridCell.Tab.2.left/3046.0.1680.1050/1366.158.1680.1050/0.119.1366.768@3046.0.1680.1050" timestamp="1579954223955" />
+    <state width="1636" height="383" key="GridCell.Tab.2.right" timestamp="1579954223955">
       <screen x="3046" y="0" width="1680" height="1050" />
     </state>
     <state width="1636" height="334" key="GridCell.Tab.2.right/3046.0.1680.1050/0.27.1366.741/1366.0.1680.1050@3046.0.1680.1050" timestamp="1579448473704" />
-    <state width="1636" height="383" key="GridCell.Tab.2.right/3046.0.1680.1050/1366.158.1680.1050/0.119.1366.768@3046.0.1680.1050" timestamp="1579889217968" />
-    <state x="3613" y="356" width="564" height="393" key="NewPhpClassDialog" timestamp="1579720021047">
+    <state width="1636" height="383" key="GridCell.Tab.2.right/3046.0.1680.1050/1366.158.1680.1050/0.119.1366.768@3046.0.1680.1050" timestamp="1579954223955" />
+    <state x="3613" y="356" width="564" height="393" key="NewPhpClassDialog" timestamp="1580047163547">
       <screen x="3046" y="0" width="1680" height="1050" />
     </state>
     <state x="3613" y="356" width="536" height="393" key="NewPhpClassDialog/3046.0.1680.1050/0.27.1366.741/1366.0.1680.1050@3046.0.1680.1050" timestamp="1579440476538" />
-    <state x="3613" y="356" width="564" height="393" key="NewPhpClassDialog/3046.0.1680.1050/1366.158.1680.1050/0.119.1366.768@3046.0.1680.1050" timestamp="1579720021047" />
-    <state x="3382" y="173" width="1007" height="737" key="SettingsEditor" timestamp="1579719786653">
+    <state x="3613" y="356" width="564" height="393" key="NewPhpClassDialog/3046.0.1680.1050/1366.158.1680.1050/0.119.1366.768@3046.0.1680.1050" timestamp="1580047163547" />
+    <state x="3382" y="173" width="1007" height="737" key="SettingsEditor" timestamp="1580045681794">
       <screen x="3046" y="0" width="1680" height="1050" />
     </state>
     <state x="3382" y="173" width="1007" height="737" key="SettingsEditor/3046.0.1680.1050/0.27.1366.741/1366.0.1680.1050@3046.0.1680.1050" timestamp="1578320784110" />
-    <state x="3382" y="173" width="1007" height="737" key="SettingsEditor/3046.0.1680.1050/1366.158.1680.1050/0.119.1366.768@3046.0.1680.1050" timestamp="1579719786653" />
+    <state x="3382" y="173" width="1007" height="737" key="SettingsEditor/3046.0.1680.1050/1366.158.1680.1050/0.119.1366.768@3046.0.1680.1050" timestamp="1580045681794" />
     <state width="647" height="445" key="SwitcherDM" timestamp="1579884953054">
       <screen x="3046" y="0" width="1680" height="1050" />
     </state>
     <state width="647" height="445" key="SwitcherDM/3046.0.1680.1050/0.27.1366.741/1366.0.1680.1050@3046.0.1680.1050" timestamp="1579440820128" />
     <state width="647" height="445" key="SwitcherDM/3046.0.1680.1050/1366.158.1680.1050/0.119.1366.768@3046.0.1680.1050" timestamp="1579884953054" />
-    <state x="3481" y="274" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1579444717590">
+    <state x="3481" y="274" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1579954217258">
       <screen x="3046" y="0" width="1680" height="1050" />
     </state>
     <state x="354" y="220" key="Vcs.Push.Dialog.v2/0.27.1366.741@0.27.1366.741" timestamp="1578928636782" />
     <state x="3481" y="274" width="800" height="535" key="Vcs.Push.Dialog.v2/3046.0.1680.1050/0.27.1366.741/1366.0.1680.1050@3046.0.1680.1050" timestamp="1579444717590" />
+    <state x="3481" y="274" key="Vcs.Push.Dialog.v2/3046.0.1680.1050/1366.158.1680.1050/0.119.1366.768@3046.0.1680.1050" timestamp="1579954217258" />
     <state x="3146" y="127" width="1480" height="823" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog" timestamp="1578838307057">
       <screen x="3046" y="0" width="1680" height="1050" />
     </state>
@@ -427,11 +469,11 @@
       <screen x="1366" y="0" width="1680" height="1050" />
     </state>
     <state x="1366" y="0" width="1301" height="982" maximized="true" key="dock-window-1/3046.0.1680.1050/0.27.1366.741/1366.0.1680.1050@3046.0.1680.1050" timestamp="1578842516885" />
-    <state x="3552" y="142" width="668" height="792" key="find.popup" timestamp="1579718946952">
+    <state x="3552" y="142" width="668" height="792" key="find.popup" timestamp="1580046642504">
       <screen x="3046" y="0" width="1680" height="1050" />
     </state>
     <state x="3552" y="142" width="668" height="792" key="find.popup/3046.0.1680.1050/0.27.1366.741/1366.0.1680.1050@3046.0.1680.1050" timestamp="1578842252247" />
-    <state x="3552" y="142" width="668" height="792" key="find.popup/3046.0.1680.1050/1366.158.1680.1050/0.119.1366.768@3046.0.1680.1050" timestamp="1579718946952" />
+    <state x="3552" y="142" width="668" height="792" key="find.popup/3046.0.1680.1050/1366.158.1680.1050/0.119.1366.768@3046.0.1680.1050" timestamp="1580046642504" />
     <state x="3550" y="244" key="run.anything.popup" timestamp="1579886914534">
       <screen x="3046" y="0" width="1680" height="1050" />
     </state>
