@@ -1,4 +1,4 @@
-root = true
+root = truephp artisan key:generate
 
 [*]
 charset = utf-8

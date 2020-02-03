@@ -1,13 +1,37 @@
 # Codeception Test Suite Configuration
 #
-# Suite for functional tests
-# Emulate web requests and make application process them
-# Include one of framework modules (Symfony2, Yii2, Laravel5, Phalcon4) to use it
-# Remove this suite if you don't use frameworks
-
-actor: FunctionalTester
+# Suite for acceptance tests.
+# Perform tests in browser using the WebDriver or PhpBrowser.
+# If you need both WebDriver and PHPBrowser tests - create a separate suite.
+actor: AcceptanceTester
 modules:
-    enabled:
-        # add a framework module here
-        - \Helper\Functional
-    step_decorators: ~        
+  enabled:
+    - WebDriver:
+        url: 'http://localhost:8000/'
+        window_size: false
+        port: 9515
+        browser: chrome
+        capabilities:
+          chromeOptions:
+            args: ["--window-size=1600,900"]
+            #                  args: ["--window-size=1600,900","--headless", "--disable-gpu", "--disable-extensions"]
+            binary: "/usr/bin/google-chrome"
+    - \Helper\Acceptance
+    - Db
+    - DbHelper
+    - Laravel5:
+        part: ORM
+        environment_file: .env
+  config:
+    Db:
+      dsn: 'mysql:host=localhost;dbname=maindb'
+      user: 'root'
+      password: 'root'
+      populate: false
+      cleanup: false
+extensions:
+  enabled:
+    - Codeception\Extension\RunProcess:
+        0: exec chromedriver --url-base=/wd/hub
+        # 0: exec docker run --net=host -e TZ="Europe/Warsaw" selenium/standalone-chrome
+        sleep: 3 # wait 3 second for processes to boot

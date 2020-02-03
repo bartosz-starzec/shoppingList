@@ -2303,6 +2303,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       if (confirm('Are you sure?')) {
         this.axios["delete"]("products/delete/".concat(this.selectedProducts.toString())).then(function () {
           _this2.getProducts();
+
+          _this2.selectedProducts = [];
         });
       }
     },
@@ -38102,8 +38104,8 @@ var render = function() {
             _c(
               "label",
               {
-                staticClass: "prodcut-name d-block sr-only",
-                attrs: { for: "prodcut-name" }
+                staticClass: "product-name d-block sr-only",
+                attrs: { for: "product-name" }
               },
               [_vm._v("\n            Product name:\n        ")]
             ),
@@ -38120,8 +38122,8 @@ var render = function() {
               staticClass: "form-control mr-2 d-none",
               attrs: {
                 type: "text",
-                name: "prodcut-id",
-                id: "prodcut-id",
+                name: "product-id",
+                id: "product-id",
                 placeholder: "Id"
               },
               domProps: { value: _vm.product.id },
@@ -38147,8 +38149,8 @@ var render = function() {
               staticClass: "form-control mr-2",
               attrs: {
                 type: "text",
-                name: "prodcut-name",
-                id: "prodcut-name",
+                name: "product-name",
+                id: "product-name",
                 placeholder: "Name"
               },
               domProps: { value: _vm.product.name },
@@ -38243,7 +38245,7 @@ var render = function() {
               "label",
               {
                 staticClass:
-                  "form-group m-1 w-100 select-product d-flex align-items-center",
+                  " form-group m-1 w-100 select-product d-flex align-items-center",
                 attrs: { for: "product-" + product.id }
               },
               [
@@ -38259,7 +38261,7 @@ var render = function() {
                   staticClass: "mr-1",
                   attrs: {
                     type: "checkbox",
-                    name: product.id,
+                    name: product.name,
                     id: "product-" + product.id
                   },
                   domProps: {
@@ -38291,7 +38293,7 @@ var render = function() {
                   }
                 }),
                 _vm._v(
-                  "\n                    " +
+                  "\n                        " +
                     _vm._s(product.name) +
                     "\n                    "
                 ),

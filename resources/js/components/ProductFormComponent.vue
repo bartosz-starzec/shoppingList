@@ -2,23 +2,23 @@
     <form v-if="display === true" class="form-inline" @submit.prevent="saveProduct">
         <div class="form-group">
             <label
-                for="prodcut-name"
-                class="prodcut-name d-block sr-only"
+                for="product-name"
+                class="product-name d-block sr-only"
             >
                 Product name:
             </label>
             <input
                 type="text"
-                name="prodcut-id"
-                id="prodcut-id"
+                name="product-id"
+                id="product-id"
                 class="form-control mr-2 d-none"
                 placeholder="Id"
                 v-model="product.id"
             />
             <input
                 type="text"
-                name="prodcut-name"
-                id="prodcut-name"
+                name="product-name"
+                id="product-name"
                 class="form-control mr-2"
                 placeholder="Name"
                 v-model="product.name"

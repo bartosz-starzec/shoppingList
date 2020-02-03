@@ -26,11 +26,11 @@
             <ul class="list-group">
                 <li class="list-group-item" v-for="product in products" v-bind:key="product.id">
                     <label :for="`product-${product.id}`"
-                           class="form-group m-1 w-100 select-product d-flex align-items-center">
-                        <input type="checkbox" class="mr-1" :name="product.id" :id="`product-${product.id}`"
+                           class=" form-group m-1 w-100 select-product d-flex align-items-center">
+                        <input type="checkbox" class="mr-1" :name="product.name" :id="`product-${product.id}`"
                                :value="product.id"
                                v-model="selectedProducts">
-                        {{ product.name }}
+                            {{ product.name }}
                         <button class="btn btn-primary ml-auto"
                                 data-toggle="collapse"
                                 data-target="#collapse-add-product"
