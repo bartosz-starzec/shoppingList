@@ -14,16 +14,16 @@ interface ProductRepositoryInterface
 
     /**
      * @param string $name
-     * @return JsonResponse
+     * @return string
      */
-    public function save(string $name): JsonResponse;
+    public function save(string $name): string;
 
     /**
      * @param int $id
      * @param string $name
-     * @return JsonResponse
+     * @return string
      */
-    public function update(int $id, string $name): JsonResponse;
+    public function update(int $id, string $name): string;
 
     /**
      * @param int $id
@@ -33,7 +33,7 @@ interface ProductRepositoryInterface
 
     /**
      * @param array $ids
-     * @return bool
+     * @return string
      */
-    public function deleteMany(array $ids): bool;
+    public function deleteMany(array $ids): string;
 }

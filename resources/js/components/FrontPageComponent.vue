@@ -7,6 +7,7 @@
             <button class="btn btn-primary mb-3" @click="createShoppingList">
                 Create new shopping list
             </button>
+
            <shopping-lists-component></shopping-lists-component>
         </div>
     </div>

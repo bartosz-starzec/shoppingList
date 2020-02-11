@@ -35,10 +35,10 @@ class ProductRepository implements ProductRepositoryInterface
     /**
      *
      * @param string $name
-     * @return JsonResponse
+     * @return string
      * @throws NotUniqueException
      */
-    public function save(string $name): JsonResponse
+    public function save(string $name): string
     {
         $product = new Product([
             'name' => $name
@@ -52,7 +52,7 @@ class ProductRepository implements ProductRepositoryInterface
             }
         }
 
-        return response()->json('success');
+        return $product->name . ' saved';
     }
 
     /**
@@ -69,29 +69,31 @@ class ProductRepository implements ProductRepositoryInterface
 
     /**
      * @param array $ids
-     * @return bool
+     * @return string
      */
-    public function deleteMany(array $ids): bool
+    public function deleteMany(array $ids): string
     {
+        $count = 0;
         foreach ($ids as $id) {
             $this->delete($id);
+            $count++;
         }
 
-        return true;
+        return 'Deleted ' . $count . ' products.';
     }
 
     /**
      * @param int $id
      * @param string $name
-     * @return JsonResponse
+     * @return string
      */
-    public function update(int $id, string $name): JsonResponse
+    public function update(int $id, string $name): string
     {
         $product = $this->model->findOrFail($id);
         $product->name = $name;
 
         $product->save();
 
-        return response()->json('success');
+        return $product->name . ' updated';
     }
 }

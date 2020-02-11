@@ -25,8 +25,7 @@ class DeleteProductCest
         $I->seeResponseCodeIs(200);
 
         foreach ($productsIds as $productId) {
-            $product = $I->grabRecord('maindb.products', ['id' => $productId]);
-            $I->assertNotNull($product['deleted_at']);
+            $I->dontSeeInDatabase('maindb.products', ['id' => $productId]);
         }
     }
 

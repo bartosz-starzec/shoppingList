@@ -5,11 +5,10 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Products\ProductStore;
 use App\Http\Requests\Products\ProductUpdate;
 use Illuminate\Http\Resources\Json\ResourceCollection;
-use Illuminate\Routing\Controller;
 use App\Repositories\ProductRepositoryInterface;
 use Illuminate\Http\JsonResponse;
 
-class ProductController extends Controller
+class ProductController extends ApiController
 {
 
     /**
@@ -27,11 +26,11 @@ class ProductController extends Controller
     }
 
     /**
-     * @return ResourceCollection
+     * @return JsonResponse
      */
-    public function index(): ResourceCollection
+    public function index(): JsonResponse
     {
-        return $this->productRepository->all();
+        return $this->respond($this->productRepository->all());
     }
 
 
@@ -41,7 +40,7 @@ class ProductController extends Controller
      */
     public function store(ProductStore $request): JsonResponse
     {
-        return $this->productRepository->save($request->get('name'));
+        return $this->respond($this->productRepository->save($request->get('name')));
     }
 
     /**
@@ -50,16 +49,20 @@ class ProductController extends Controller
      */
     public function update(ProductUpdate $request): JsonResponse
     {
-        return $this->productRepository->update($request->get('id'), $request->get('name'));
+        return $this->respond(
+            $this->productRepository->update($request->get('id'), $request->get('name'))
+        );
     }
 
     /**
      * @param string $ids
-     * @return void
+     * @return JsonResponse
      */
-    public function deleteMany(string $ids): void
+    public function deleteMany(string $ids): JsonResponse
     {
         $ids = explode(',', $ids);
-        $this->productRepository->deleteMany($ids);
+        return $this->respond(
+            $this->productRepository->deleteMany($ids)
+        );
     }
 }
