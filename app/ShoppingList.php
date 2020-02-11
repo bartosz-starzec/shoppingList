@@ -7,8 +7,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class ShoppingList extends Model
 {
-    use SoftDeletes;
-
     protected $fillable = ['name'];
     protected $with = ['products'];
 

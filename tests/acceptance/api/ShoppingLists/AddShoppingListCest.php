@@ -11,6 +11,7 @@ class AddShoppingListCest
      */
     public function tryToStoreShoppingList(AcceptanceTester $I): void
     {
+        $test = 0;
 
     }
 
