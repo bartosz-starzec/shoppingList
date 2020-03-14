@@ -1,13 +1,13 @@
 <template>
     <div>
         <div v-for="shoppingList in shoppingLists" class="shoppingList card mb-5">
-            <div class="card-header d-flex">
+            <div :class="`card-header d-flex shopping-list-${shoppingList.id}`">
                 <button class="btn btn-link w-100 text-decoration-none text-left" type="button"
                         data-toggle="collapse"
                         :data-target="`#collapseShoppingList${shoppingList.id}`"
                         aria-expanded="false"
                         :aria-controls="`collapseShoppingList${shoppingList.id}`">
-                    {{ shoppingList.name + shoppingList.id}}
+                    {{ shoppingList.name }}
                 </button>
                 <button @click="deleteShoppingList(shoppingList.id)">X</button>
             </div>

@@ -3,11 +3,15 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
 {
     protected $fillable = ['name'];
+
+    /**
+     * @var string
+     */
+    private $name;
 
     public function shoppingListProducts()
     {

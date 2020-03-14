@@ -2,6 +2,8 @@
 
 namespace App\Repositories;
 
+use App\Exceptions\NotUniqueException;
+use App\Http\Requests\Products\ShoppingListStore;
 use App\Product;
 use App\ShoppingList;
 use Illuminate\Http\JsonResponse;
@@ -33,17 +35,25 @@ class ShoppingListRepository implements ShoppingListRepositoryInterface
     }
 
     /**
-     * @return JsonResponse
+     * @param string $name
+     * @return string
+     * @throws NotUniqueException
      */
-    public function save(): JsonResponse
+    public function save(string $name): string
     {
         $shoppingList = new ShoppingList([
-            'name' => 'Shopping List '
+            'name' => $name
         ]);
 
-        $shoppingList->save();
+        try {
+            $shoppingList->save();
+        } catch (\PDOException $exception) {
+            if ($exception->getCode() === '23000') {
+                throw new NotUniqueException('Shopping List with that name already exists!', $exception->getCode());
+            }
+        }
 
-        return response()->json('success');
+        return $shoppingList->name . ' saved';
     }
 
     /**
@@ -56,15 +66,15 @@ class ShoppingListRepository implements ShoppingListRepositoryInterface
 
     /**
      * @param int $id
-     * @return JsonResponse
+     * @return bool
      */
-    public function delete(int $id): JsonResponse
+    public function delete(int $id): bool
     {
         $shoppingList = $this->model->findOrFail($id);
         $shoppingList->products()->detach();
         $shoppingList->delete();
 
-        return response()->json('success');
+        return true;
     }
 
     /**

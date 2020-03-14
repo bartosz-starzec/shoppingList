@@ -2013,6 +2013,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ProductsComponent__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ProductsComponent */ "./resources/js/components/ProductsComponent.vue");
 /* harmony import */ var _ShoppingLists_ShoppingListsComponent__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ShoppingLists/ShoppingListsComponent */ "./resources/js/components/ShoppingLists/ShoppingListsComponent.vue");
 /* harmony import */ var _AlertComponent__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./AlertComponent */ "./resources/js/components/AlertComponent.vue");
+/* harmony import */ var _ShoppingLists_ShoppingListFormComponent__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./ShoppingLists/ShoppingListFormComponent */ "./resources/js/components/ShoppingLists/ShoppingListFormComponent.vue");
 //
 //
 //
@@ -2024,14 +2025,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
+
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
+    ShoppingListFormComponent: _ShoppingLists_ShoppingListFormComponent__WEBPACK_IMPORTED_MODULE_3__["default"],
     AlertComponent: _AlertComponent__WEBPACK_IMPORTED_MODULE_2__["default"],
     ShoppingListsComponent: _ShoppingLists_ShoppingListsComponent__WEBPACK_IMPORTED_MODULE_1__["default"],
     ProductsComponent: _ProductsComponent__WEBPACK_IMPORTED_MODULE_0__["default"]
@@ -2043,15 +2043,6 @@ __webpack_require__.r(__webpack_exports__);
       selectedProducts: [],
       shoppingListId: ''
     };
-  },
-  methods: {
-    createShoppingList: function createShoppingList() {
-      var _this = this;
-
-      this.axios.post('shopping-lists/create').then(function () {
-        _this.$store.dispatch('getShoppingLists');
-      });
-    }
   }
 });
 
@@ -2463,6 +2454,63 @@ __webpack_require__.r(__webpack_exports__);
         jobKey: this.jobKey
       }).then(function (response) {
         return response;
+      });
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ShoppingLists/ShoppingListFormComponent.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ShoppingLists/ShoppingListFormComponent.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "ShoppingListFormComponent",
+  data: function data() {
+    return {
+      shoppingList: {
+        name: ''
+      }
+    };
+  },
+  methods: {
+    createShoppingList: function createShoppingList() {
+      var _this = this;
+
+      this.axios.post('shopping-lists/create', {
+        name: this.shoppingList.name
+      }).then(function () {
+        _this.$store.dispatch('getShoppingLists');
       });
     }
   }
@@ -38050,14 +38098,7 @@ var render = function() {
         _vm._v(" "),
         _c("products-component"),
         _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass: "btn btn-primary mb-3",
-            on: { click: _vm.createShoppingList }
-          },
-          [_vm._v("\n            Create new shopping list\n        ")]
-        ),
+        _c("shopping-list-form-component"),
         _vm._v(" "),
         _c("shopping-lists-component")
       ],
@@ -38538,6 +38579,93 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ShoppingLists/ShoppingListFormComponent.vue?vue&type=template&id=76740754&scoped=true&":
+/*!******************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ShoppingLists/ShoppingListFormComponent.vue?vue&type=template&id=76740754&scoped=true& ***!
+  \******************************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "form",
+    {
+      staticClass: "form-inline mb-3",
+      on: {
+        submit: function($event) {
+          $event.preventDefault()
+          return _vm.createShoppingList($event)
+        }
+      }
+    },
+    [
+      _c("div", { staticClass: "form-group" }, [
+        _c(
+          "label",
+          {
+            staticClass: "shopping-list-name d-block sr-only",
+            attrs: { for: "shopping-list-name" }
+          },
+          [_vm._v("\n            Shopping list name:\n        ")]
+        ),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.shoppingList.name,
+              expression: "shoppingList.name"
+            }
+          ],
+          staticClass: "form-control mr-2",
+          attrs: {
+            type: "text",
+            name: "shopping-list-name",
+            id: "shopping-list-name",
+            placeholder: "Name"
+          },
+          domProps: { value: _vm.shoppingList.name },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.$set(_vm.shoppingList, "name", $event.target.value)
+            }
+          }
+        })
+      ]),
+      _vm._v(" "),
+      _vm._m(0)
+    ]
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group" }, [
+      _c("button", { staticClass: "btn btn-success" }, [
+        _vm._v("Add shopping list")
+      ])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ShoppingLists/ShoppingListsComponent.vue?vue&type=template&id=08b81086&":
 /*!***************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ShoppingLists/ShoppingListsComponent.vue?vue&type=template&id=08b81086& ***!
@@ -38560,41 +38688,45 @@ var render = function() {
         "div",
         { staticClass: "shoppingList card mb-5" },
         [
-          _c("div", { staticClass: "card-header d-flex" }, [
-            _c(
-              "button",
-              {
-                staticClass:
-                  "btn btn-link w-100 text-decoration-none text-left",
-                attrs: {
-                  type: "button",
-                  "data-toggle": "collapse",
-                  "data-target": "#collapseShoppingList" + shoppingList.id,
-                  "aria-expanded": "false",
-                  "aria-controls": "collapseShoppingList" + shoppingList.id
-                }
-              },
-              [
-                _vm._v(
-                  "\n                " +
-                    _vm._s(shoppingList.name + shoppingList.id) +
-                    "\n            "
-                )
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                on: {
-                  click: function($event) {
-                    return _vm.deleteShoppingList(shoppingList.id)
+          _c(
+            "div",
+            { class: "card-header d-flex shopping-list-" + shoppingList.id },
+            [
+              _c(
+                "button",
+                {
+                  staticClass:
+                    "btn btn-link w-100 text-decoration-none text-left",
+                  attrs: {
+                    type: "button",
+                    "data-toggle": "collapse",
+                    "data-target": "#collapseShoppingList" + shoppingList.id,
+                    "aria-expanded": "false",
+                    "aria-controls": "collapseShoppingList" + shoppingList.id
                   }
-                }
-              },
-              [_vm._v("X")]
-            )
-          ]),
+                },
+                [
+                  _vm._v(
+                    "\n                " +
+                      _vm._s(shoppingList.name) +
+                      "\n            "
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  on: {
+                    click: function($event) {
+                      return _vm.deleteShoppingList(shoppingList.id)
+                    }
+                  }
+                },
+                [_vm._v("X")]
+              )
+            ]
+          ),
           _vm._v(" "),
           _c("shopping-list-component", {
             attrs: { id: shoppingList.id, products: shoppingList.products }
@@ -55224,6 +55356,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ShoppingListComponent_vue_vue_type_template_id_33233a0a___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ShoppingListComponent_vue_vue_type_template_id_33233a0a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/ShoppingLists/ShoppingListFormComponent.vue":
+/*!*****************************************************************************!*\
+  !*** ./resources/js/components/ShoppingLists/ShoppingListFormComponent.vue ***!
+  \*****************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _ShoppingListFormComponent_vue_vue_type_template_id_76740754_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ShoppingListFormComponent.vue?vue&type=template&id=76740754&scoped=true& */ "./resources/js/components/ShoppingLists/ShoppingListFormComponent.vue?vue&type=template&id=76740754&scoped=true&");
+/* harmony import */ var _ShoppingListFormComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ShoppingListFormComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/ShoppingLists/ShoppingListFormComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _ShoppingListFormComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _ShoppingListFormComponent_vue_vue_type_template_id_76740754_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _ShoppingListFormComponent_vue_vue_type_template_id_76740754_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "76740754",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/ShoppingLists/ShoppingListFormComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/ShoppingLists/ShoppingListFormComponent.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************!*\
+  !*** ./resources/js/components/ShoppingLists/ShoppingListFormComponent.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ShoppingListFormComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./ShoppingListFormComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ShoppingLists/ShoppingListFormComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ShoppingListFormComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/ShoppingLists/ShoppingListFormComponent.vue?vue&type=template&id=76740754&scoped=true&":
+/*!************************************************************************************************************************!*\
+  !*** ./resources/js/components/ShoppingLists/ShoppingListFormComponent.vue?vue&type=template&id=76740754&scoped=true& ***!
+  \************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ShoppingListFormComponent_vue_vue_type_template_id_76740754_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./ShoppingListFormComponent.vue?vue&type=template&id=76740754&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ShoppingLists/ShoppingListFormComponent.vue?vue&type=template&id=76740754&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ShoppingListFormComponent_vue_vue_type_template_id_76740754_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ShoppingListFormComponent_vue_vue_type_template_id_76740754_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

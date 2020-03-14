@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Products;
+namespace App\Http\Requests\ShoppingLists;
 
 use App\Http\Requests\BaseRequest;
 
-class ProductStore extends BaseRequest
+class ShoppingListStore extends BaseRequest
 {
 
     /**
@@ -15,7 +15,7 @@ class ProductStore extends BaseRequest
     public function rules()
     {
         return [
-            'name' => 'required|min:1|unique:products'
+            'name' => 'required|min:1|unique:shopping_lists'
         ];
     }
 }

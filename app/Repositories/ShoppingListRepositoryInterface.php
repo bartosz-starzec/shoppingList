@@ -1,6 +1,7 @@
 <?php
 namespace App\Repositories;
 
+use App\Http\Requests\Products\ShoppingListStore;
 use App\Product;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\ResourceCollection;
@@ -8,9 +9,10 @@ use Illuminate\Http\Resources\Json\ResourceCollection;
 interface ShoppingListRepositoryInterface
 {
     /**
-     * @return JsonResponse
+     * @param string $name
+     * @return string
      */
-    public function save(): JsonResponse;
+    public function save(string $name): string;
 
     /**
      * @return ResourceCollection
@@ -19,9 +21,9 @@ interface ShoppingListRepositoryInterface
 
     /**
      * @param int $id
-     * @return JsonResponse
+     * @return bool
      */
-    public function delete(int $id): JsonResponse;
+    public function delete(int $id): bool;
 
     /**
      * @param int $shoppingListId

@@ -53,9 +53,12 @@ class FrontPageCest
     {
         $I->amGoingTo('delete product from products list');
 
+        $I->waitForElement('input[name="TestProduct"]', 5);
+
         $I->amGoingTo('check product to delete');
-        $I->click('label[for="product-2"]');
+        $I->checkOption('input[name="TestProduct"]');
         $I->click('Delete products');
+        $I->acceptPopup();
 
         $I->waitForElementNotVisible(['name' => 'TestProduct'], 5);
     }

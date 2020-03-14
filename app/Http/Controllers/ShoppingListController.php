@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ShoppingLists\ShoppingListStore;
 use App\Jobs\Jobs;
 use App\Jobs\ProcessAddToShoppingList;
 use App\Jobs\ProcessRemoveFromShoppingList;
@@ -9,10 +10,9 @@ use App\Repositories\ShoppingListRepositoryInterface;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
-use Illuminate\Routing\Controller;
 use Psr\SimpleCache\InvalidArgumentException;
 
-class ShoppingListController extends Controller
+class ShoppingListController extends ApiController
 {
     /**
      * @var ShoppingListRepositoryInterface
@@ -36,11 +36,12 @@ class ShoppingListController extends Controller
     }
 
     /**
+     * @param ShoppingListStore $request
      * @return JsonResponse
      */
-    public function store(): JsonResponse
+    public function store(ShoppingListStore $request): JsonResponse
     {
-        return $this->shoppingListRepository->save();
+        return $this->respond($this->shoppingListRepository->save($request->get('name')));
     }
 
     public function index(): ResourceCollection
@@ -54,7 +55,7 @@ class ShoppingListController extends Controller
      */
     public function destroy(Request $request): JsonResponse
     {
-        return $this->shoppingListRepository->delete($request->route('id'));
+        return $this->respond($this->shoppingListRepository->delete($request->route('id')));
     }
 
     /**

@@ -11,24 +11,62 @@ class AddShoppingListCest
      */
     public function tryToStoreShoppingList(AcceptanceTester $I): void
     {
-        $test = 0;
+        $I->sendPOST('shopping-lists/create', ['name' => 'TestShoppingList']);
+        $I->seeResponseCodeIs(200);
 
+        $I->seeInDatabase('maindb.shopping_lists', [
+            'name' => 'TestShoppingList'
+        ]);
     }
 
-//    public function tryToDeleteShoppingList(AcceptanceTester $I): void
-//    {
-//        $I->sendPOST('shopping-lists/create');
-//        $I->seeResponseCodeIs(200);
-//        $recordsCount = $I->grabNumRecords('maindb.shopping_lists');
-//
-//        $createdList = $recordsCount + 1;
-//        $I->sendDELETE('shopping-lists/delete/' . $createdList);
-//        $I->seeResponseCodeIs(200);
-//
-//        $I->seeInDatabase('maindb.shopping_lists', [
-//            'id' => $createdList,
-//            'deleted_at' => now()
-//        ]);
-//        $I->deleteFromDatabase('maindb.shopping_lists', ['id' => $createdList + 1]);
-//    }
+    /**
+     * @param AcceptanceTester $I
+     */
+    public function tryToStoreWithWrongParam(AcceptanceTester $I): void
+    {
+        $I->sendPOST('shopping-lists/create', ['id' => 'TestShoppingList']);
+        $I->seeResponseCodeIs(400);
+
+        $I->dontSeeInDatabase('maindb.shopping_lists', [
+            'name' => 'TestShoppingList'
+        ]);
+    }
+
+    /**
+     * @param AcceptanceTester $I
+     */
+    public function tryToStoreWithoutParam(AcceptanceTester $I): void
+    {
+        $I->sendPOST('shopping-lists/create');
+        $I->seeResponseCodeIs(400);
+
+        $I->dontSeeInDatabase('maindb.shopping_lists', [
+            'name' => 'TestShoppingList'
+        ]);
+    }
+
+    /**
+     * @param AcceptanceTester $I
+     */
+    public function tryToStoreDuplicate(AcceptanceTester $I): void
+    {
+        $I->haveInDatabase('maindb.shopping_lists', [
+            'name' => 'TestShoppingList'
+        ]);
+        $I->sendPOST('shopping-lists/create', ['name' => 'TestShoppingList']);
+        $I->seeResponseCodeIs(400);
+
+        $recordsCount = $I->grabNumRecords('maindb.shopping_lists', [
+            'name' => 'TestShoppingList'
+        ]);
+
+        $I->assertEquals(1, $recordsCount);
+    }
+
+    public function _after(AcceptanceTester $I): void
+    {
+        $I->deleteFromDatabase('maindb.shopping_lists', [
+           'name' => 'TestShoppingList'
+        ]);
+    }
 }
